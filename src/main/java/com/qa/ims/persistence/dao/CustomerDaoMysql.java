@@ -60,11 +60,13 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		}
 		return new ArrayList<>();
 	}
-
+	
+	
+	// ALTERD THIS TO FIX THE ISSUE OF NOT BEING ABLE TO CREATE A CUSTOMER 
 	public Customer readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT FROM customers ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM customers ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
 			return customerFromResultSet(resultSet);
 		} catch (Exception e) {
