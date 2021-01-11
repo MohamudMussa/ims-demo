@@ -5,16 +5,20 @@ public class Customer {
 	private Long id;
 	private String firstName;
 	private String surname;
+	private String address;
 
-	public Customer(String firstName, String surname) {
+	public Customer(String firstName, String surname, String address) {
 		this.firstName = firstName;
 		this.surname = surname;
+		this.address = address;
 	}
 
-	public Customer(Long id, String firstName, String surname) {
+	public Customer(Long id, String firstName, String surname, String address) {
 		this.id = id;
 		this.firstName = firstName;
 		this.surname = surname;
+		this.address = address;
+		;
 	}
 
 	public Long getId() {
@@ -41,8 +45,20 @@ public class Customer {
 		this.surname = surname;
 	}
 
+
+
+	@Override
 	public String toString() {
-		return "id:" + id + " first name:" + firstName + " surname:" + surname;
+		return "Customer [id=" + id + ", firstName=" + firstName + ", surname=" + surname + ", address=" + address
+				+ "]";
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	@Override
