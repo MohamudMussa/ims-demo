@@ -34,7 +34,7 @@ public class ItemDaoMysql implements Dao<Item> {
 	}
 
 	Item itemFromResultSet(ResultSet resultSet) throws SQLException {
-		Long item_id = resultSet.getLong("item_item_id");
+		Long item_id = resultSet.getLong("item_id");
 		String item_name = resultSet.getString("item_name");	
 		BigDecimal item_price = resultSet.getBigDecimal("item_price");
 		return new Item(item_id, item_name, item_price);
@@ -67,7 +67,7 @@ public class ItemDaoMysql implements Dao<Item> {
 	public Item readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM Items ORDER BY item_item_id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM Items ORDER BY item_id DESC LIMIT 1");) {
 			resultSet.next();
 			return itemFromResultSet(resultSet);
 		} catch (Exception e) {
