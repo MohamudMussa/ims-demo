@@ -1,5 +1,6 @@
 package com.qa.ims.utils;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Utils {
@@ -13,5 +14,10 @@ public class Utils {
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine();
 	}
-
+	public static BigDecimal getNumber() {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextBigDecimal();
+	}
+	
 }
