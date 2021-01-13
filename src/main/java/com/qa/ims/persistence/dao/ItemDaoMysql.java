@@ -35,7 +35,7 @@ public class ItemDaoMysql implements Dao<Item> {
 
 	Item itemFromResultSet(ResultSet resultSet) throws SQLException {
 		Long item_id = resultSet.getLong("item_id");
-		String item_name = resultSet.getString("item_name");	
+		String item_name = resultSet.getString("item_name");
 		BigDecimal item_price = resultSet.getBigDecimal("item_price");
 		return new Item(item_id, item_name, item_price);
 	}
@@ -61,9 +61,8 @@ public class ItemDaoMysql implements Dao<Item> {
 		}
 		return new ArrayList<>();
 	}
-	
-	
-	// MM ALTERD THIS TO FIX THE ISSUE OF NOT BEING ABLE TO CREATE A Item 
+
+	// MM ALTERD THIS TO FIX THE ISSUE OF NOT BEING ABLE TO CREATE A Item
 	public Item readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
@@ -86,8 +85,8 @@ public class ItemDaoMysql implements Dao<Item> {
 	public Item create(Item Item) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("insert into Items(item_name, item_price) values('" + Item.getItem_name()
-					+ "','" + Item.getItem_price()+ "')");
+			statement.executeUpdate("insert into Items(item_name, item_price) values('" + Item.getItem_name() + "','"
+					+ Item.getItem_price() + "')");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -113,7 +112,7 @@ public class ItemDaoMysql implements Dao<Item> {
 	 * Updates a Item in the database
 	 * 
 	 * @param Item - takes in a Item object, the item_id field will be used to
-	 *                 update that Item in the database
+	 *             update that Item in the database
 	 * @return
 	 */
 	@Override
@@ -121,7 +120,7 @@ public class ItemDaoMysql implements Dao<Item> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update Items set item_name ='" + Item.getItem_name() + "', item_price ='"
-					+ Item.getItem_price() +  "' where item_id =" + Item.getItem_id());
+					+ Item.getItem_price() + "' where item_id =" + Item.getItem_id());
 			return readItem(Item.getItem_id());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
