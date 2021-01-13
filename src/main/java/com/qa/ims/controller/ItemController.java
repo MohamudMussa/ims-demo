@@ -1,0 +1,87 @@
+package com.qa.ims.controller;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.services.CrudServices;
+import com.qa.ims.utils.Utils;
+
+/**
+ * Takes in Item details for CRUD functionality
+ *
+ */
+public class ItemController implements CrudController<Item>{
+
+	public static final Logger LOGGER = Logger.getLogger(ItemController.class);
+	
+	private CrudServices<Item> itemService;
+	
+	public ItemController(CrudServices<Item> itemService) {
+		this.itemService = itemService;
+	}
+	
+
+	String getInput() {
+		return Utils.getInput();
+	}
+	BigDecimal getNumber() {
+		return Utils.getNumber();
+	}
+	
+	/**
+	 * Reads all Items to the logger
+	 */
+	@Override
+	public List<Item> readAll() {
+		List<Item> items = itemService.readAll();
+		for(Item item: items) {
+			LOGGER.info(item.toString());
+		}
+		return items;
+	}
+
+	/**
+	 * Creates a Item by taking in user input
+	 */
+	@Override
+	public Item create() {
+		LOGGER.info("Please enter the Item name");
+		String item_name = getInput();
+		LOGGER.info("Please enter item price");
+		BigDecimal item_price = getNumber();
+		Item Item = itemService.create(new Item(item_name, item_price));
+		LOGGER.info("Item Created");
+		return Item;
+	}
+
+	/**
+	 * Updates an existing Item by taking in user input
+	 */
+	@Override
+	public Item update() {
+		LOGGER.info("Please enter the id of the Item you would like to update");
+		Long item_id = Long.valueOf(getInput());
+		LOGGER.info("Please enter the Item name");
+		String item_name = getInput();
+		LOGGER.info("Please enter item price");
+		BigDecimal item_price = getNumber();
+		Item Item = itemService.update(new Item(item_id, item_name, item_price));
+		LOGGER.info("Item Updated");
+		return Item;
+	}
+	
+
+	/**
+	 * Deletes an existing Item by the id of the Item
+	 */
+	@Override
+	public void delete() {
+		LOGGER.info("Please enter the id of the Item you would like to delete");
+		Long item_id = Long.valueOf(getInput());
+		itemService.delete(item_id);
+	}
+	
+}
