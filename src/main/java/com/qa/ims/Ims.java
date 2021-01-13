@@ -85,13 +85,11 @@ public class Ims {
 	 * @param username
 	 * @param password
 	 */
-	
-	//UPDATE THIS
+
+	// UPDATE THIS
 	public void init(String username, String password) {
 		init("jdbc:mysql://127.0.0.1:3306/?user=root", username, password, "src/main/resources/sql-schema.sql");
 	}
-	
-
 
 	public String readFile(String fileLocation) {
 		StringBuilder stringBuilder = new StringBuilder();
