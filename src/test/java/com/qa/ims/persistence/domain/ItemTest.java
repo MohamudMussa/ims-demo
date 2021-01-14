@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ItemTest {
-	BigDecimal price = new BigDecimal("88.00");
+	Double item_price = 80.00;
 	
 	private Item Item;
 	private Item other;
@@ -20,8 +20,8 @@ public class ItemTest {
 	@Before	
 	public void setUp() {
 		
-		Item = new Item(1L, "Pokemon", price);
-		other = new Item(1L, "Pokemon", price);
+		Item = new Item(1L, "Pokemon", item_price);
+		other = new Item(1L, "Pokemon", item_price);
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public class ItemTest {
 	public void createItemWithId() {
 		assertEquals(1L, Item.getItem_id(), 0);
 		assertEquals("Pokemon", Item.getItem_name());
-		assertEquals(price, Item.getItem_price());
+		assertEquals(item_price, Item.getItem_price());
 	}
 	
 	@Test
@@ -107,7 +107,7 @@ public class ItemTest {
 	@Test
 	public void nullItemPrice() {
 		Item.setItem_price(null);
-		assertTrue(Item.equals(other));
+		assertFalse(Item.equals(other));
 	}
 	
 	@Test
@@ -119,13 +119,13 @@ public class ItemTest {
 	
 	@Test
 	public void otherSurnameDifferent() {
-		other.setItem_price(price);
+		other.setItem_price(item_price);
 		assertTrue(Item.equals(other));
 	}
 	
 	@Test
 	public void constructorWithoutId() {
-		Item Item = new Item("Chris", price);
+		Item Item = new Item("Chris", item_price);
 		assertNull(Item.getItem_id());
 		assertNotNull(Item.getItem_name());
 		assertNotNull(Item.getItem_price());
@@ -144,7 +144,7 @@ public class ItemTest {
 	
 	@Test
 	public void toStringTest() {
-		String toString = "Item [item_id=1 item_name=Pokemon item_price="+price+ "]";
+		String toString = "Item [item_id=1 item_name=Pokemon item_price="+item_price+ "]";
 		assertEquals(toString, Item.toString());
 	}
 }

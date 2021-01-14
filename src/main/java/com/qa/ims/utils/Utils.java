@@ -14,10 +14,10 @@ public class Utils {
 		Scanner scanner = new Scanner(System.in);
 		return scanner.nextLine();
 	}
-	public static BigDecimal getNumber() {
+	public static Double getNumber() {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
-		return scanner.nextBigDecimal();
+		return scanner.nextDouble();
 	}
 	
 }

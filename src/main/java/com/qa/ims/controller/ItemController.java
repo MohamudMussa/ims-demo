@@ -1,6 +1,6 @@
 package com.qa.ims.controller;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -27,7 +27,7 @@ public class ItemController implements CrudController<Item>{
 	String getInput() {
 		return Utils.getInput();
 	}
-	BigDecimal getNumber() {
+	Double getNumber() {
 		return Utils.getNumber();
 	}
 	
@@ -51,9 +51,9 @@ public class ItemController implements CrudController<Item>{
 		LOGGER.info("Please enter the Item name");
 		String item_name = getInput();
 		LOGGER.info("Please enter item price");
-		BigDecimal item_price = getNumber();
+		Double item_price = getNumber();
 		Item Item = itemService.create(new Item(item_name, item_price));
-		LOGGER.info("Item Created");
+		LOGGER.info("Item Created, here is your Item_ID" + " " + Item.getItem_id());
 		return Item;
 	}
 
@@ -67,7 +67,7 @@ public class ItemController implements CrudController<Item>{
 		LOGGER.info("Please enter the Item name");
 		String item_name = getInput();
 		LOGGER.info("Please enter item price");
-		BigDecimal item_price = getNumber();
+		Double item_price = getNumber();
 		Item Item = itemService.update(new Item(item_id, item_name, item_price));
 		LOGGER.info("Item Updated");
 		return Item;

@@ -20,7 +20,7 @@ import com.qa.ims.services.ItemServices;
 @RunWith(MockitoJUnitRunner.class)
 public class ItemControllerTest {
 	//big decimal price 
-	BigDecimal price = new BigDecimal("88.00");
+	Double item_price = 80.00;
 
 	
 	
@@ -43,9 +43,9 @@ public class ItemControllerTest {
 	public void readAllTest() {
 		ItemController ItemController = new ItemController(ItemServices);
 		List<Item> Items = new ArrayList<>();
-		Items.add(new Item("Chris", price));
-		Items.add(new Item("Rhys", price));
-		Items.add(new Item("Nic", price));
+		Items.add(new Item("Chris", item_price));
+		Items.add(new Item("Rhys", item_price));
+		Items.add(new Item("Nic", item_price));
 		Mockito.when(ItemServices.readAll()).thenReturn(Items);
 		assertEquals(Items, ItemController.readAll());
 	}
@@ -54,9 +54,10 @@ public class ItemControllerTest {
 	public void createTest() {
 		String item_id = "1";
 		String itemName = "Chris";
-		Mockito.doReturn(item_id, itemName, price).when(ItemController).getNumber();
-		Item Item = new Item(itemName, price);
-		Item savedItem = new Item(1L, "Chris", price);
+		String item_price = "80.00";
+		Mockito.doReturn(item_id, itemName, item_price).when(ItemController).getInput();
+		Item Item = new Item(itemName, 88.00);
+		Item savedItem = new Item(1L, "Chris", 88.00);
 		Mockito.when(ItemServices.create(Item)).thenReturn(savedItem);
 		assertEquals(savedItem, ItemController.create());
 	}
@@ -68,8 +69,9 @@ public class ItemControllerTest {
 	public void updateTest() {
 		String item_id = "1";
 		String itemName = "Rhys";
-		Mockito.doReturn(item_id, itemName, price).when(ItemController).getNumber();
-		Item Item = new Item(1L, itemName, price);
+		String item_price = "80.00";
+		Mockito.doReturn(item_id, itemName, item_price).when(ItemController).getInput();
+		Item Item = new Item(1L, itemName, Double.parseDouble(item_price));
 		Mockito.when(ItemServices.update(Item)).thenReturn(Item);
 		assertEquals(Item, ItemController.update());
 	}

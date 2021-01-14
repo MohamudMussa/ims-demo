@@ -36,7 +36,7 @@ public class ItemDaoMysql implements Dao<Item> {
 	Item itemFromResultSet(ResultSet resultSet) throws SQLException {
 		Long item_id = resultSet.getLong("item_id");
 		String item_name = resultSet.getString("item_name");
-		BigDecimal item_price = resultSet.getBigDecimal("item_price");
+		Double item_price = resultSet.getDouble("item_price");
 		return new Item(item_id, item_name, item_price);
 	}
 
