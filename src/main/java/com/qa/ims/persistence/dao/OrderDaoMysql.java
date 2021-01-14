@@ -38,6 +38,8 @@ public class OrderDaoMysql implements Dao<Order> {
 
 		return new Order(order_id, customer_id);
 	}
+	
+	
 
 	/**
 	 * Reads all Orders from the database
