@@ -7,10 +7,10 @@ import com.qa.ims.persistence.domain.Item;
 
 public class ItemServices implements CrudServices<Item> {
 
-	private Dao<Item> itemDao;
+	private static Dao<Item> itemDao;
 	
 	public ItemServices(Dao<Item> ItemDao) {
-		this.itemDao = ItemDao;
+		ItemServices.itemDao = ItemDao;
 	}
 	
 	public List<Item> readAll() {

@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.qa.ims.Ims;
+import com.qa.ims.persistence.dao.ItemDaoMysql;
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.services.CrudServices;
+import com.qa.ims.services.ItemServices;
 import com.qa.ims.utils.Utils;
 
 /**
@@ -17,9 +21,11 @@ public class OrderController implements CrudController<Order> {
 	public static final Logger LOGGER = Logger.getLogger(OrderController.class);
 
 	private CrudServices<Order> orderServices;
+	private CrudServices<Item> itemServices;
 
-	public OrderController(CrudServices<Order> OrderService) {
-		this.orderServices = OrderService;
+	public OrderController(CrudServices<Order> orderServices, CrudServices<Item> itemServices) {
+		this.orderServices = orderServices;
+		this.itemServices = itemServices;
 	}
 
 	String getInput() {
@@ -37,8 +43,6 @@ public class OrderController implements CrudController<Order> {
 		}
 		return Orders;
 	}
-	
-	
 
 	/**
 	 * Creates a Order by taking in user input
@@ -49,6 +53,30 @@ public class OrderController implements CrudController<Order> {
 		Long customer_id = Long.valueOf(getInput());
 		Order Order = orderServices.create(new Order(customer_id));
 		LOGGER.info("Order Created" + "Here is the Order_ID" + " " + Order.getOrder_id());
+
+		// SHOW THEM A LIST OF ITEMS VIA ITEM_ID
+
+		LOGGER.info("Please select one of the following Items below");
+
+		List<Item> Items = itemServices.readAll();
+		for (Item item : Items) {
+			LOGGER.info(item.toString());
+			
+		
+			
+		// SELECT THE ITEM YOU WANT TO ADD TO THE LIST
+			
+		// HOW MANY OF THIS ITEM DO YOU WANT ----> STORE IN QUANTITY WITH CURRENT ORDERLINE_ID
+			
+			
+		// DO YOUU WANT TO ADD ANOTHER ITEM 
+			
+		
+		// IF NO, CREATE ORDER, STORE INFORAMTION IN ORDERLINE, 
+			
+			
+		// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE THE QUANTITY 
+		}
 		return Order;
 	}
 
@@ -73,7 +101,7 @@ public class OrderController implements CrudController<Order> {
 	public void delete() {
 		LOGGER.info("Please enter the id of the Order you would like to delete");
 		Long Order_id = Long.valueOf(getInput());
-		LOGGER.info("Order Deleted"); 
+		LOGGER.info("Order Deleted");
 		orderServices.delete(Order_id);
 	}
 
