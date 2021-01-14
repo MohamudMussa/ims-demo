@@ -59,27 +59,27 @@ public class CustomerController implements CrudController<Customer> {
 	 */
 	@Override
 	public Customer update() {
-		LOGGER.info("Please enter the id of the customer you would like to update");
-		Long id = Long.valueOf(getInput());
+		LOGGER.info("Please enter the customer_id of the customer you would like to update");
+		Long customer_id = Long.valueOf(getInput());
 		LOGGER.info("Please enter a first name");
 		String firstName = getInput();
 		LOGGER.info("Please enter a surname");
 		String surname = getInput();
 		LOGGER.info("Please enter your address");
 		String address = getInput();
-		Customer customer = customerService.update(new Customer(id, firstName, surname, address));
+		Customer customer = customerService.update(new Customer(customer_id, firstName, surname, address));
 		LOGGER.info("Customer Updated");
 		return customer;
 	}
 
 	/**
-	 * Deletes an existing customer by the id of the customer
+	 * Deletes an existing customer by the customer_id of the customer
 	 */
 	@Override
 	public void delete() {
-		LOGGER.info("Please enter the id of the customer you would like to delete");
-		Long id = Long.valueOf(getInput());
-		customerService.delete(id);
+		LOGGER.info("Please enter the customer_id of the customer you would like to delete");
+		Long customer_id = Long.valueOf(getInput());
+		customerService.delete(customer_id);
 	}
 
 }
