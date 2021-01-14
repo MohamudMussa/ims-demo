@@ -142,7 +142,7 @@ public class OrderDaoMysql implements Dao<Order> {
 			statement.executeUpdate("delete from Orders where order_id = " + order_id	);
 			
 		} catch (Exception e) {
-			LOGGER.debug(e.getStackTrace());
+			LOGGER.debug(e.getStackTrace());		
 			LOGGER.error(e.getMessage());
 		}
 	}

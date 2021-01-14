@@ -41,36 +41,39 @@ public class Ims {
 
 		LOGGER.info("Which entity would you like to use?");
 		Domain.printDomains();
-
 		Domain domain = Domain.getDomain();
-		LOGGER.info("What would you like to do with " + domain.name().toLowerCase() + ":");
+		if (domain.name().toUpperCase() == "EXIT") {
+			LOGGER.info("Thank you for using this application, please re-run the application if you'd like to use anything else");
+			System.exit(0);
+		} else {
+			LOGGER.info("What would you like to do with " + domain.name().toLowerCase() + ":");
+			Action.printActions();
+			Action action = Action.getAction();
 
-		Action.printActions();
-		Action action = Action.getAction();
+			switch (domain) {
+			case CUSTOMER:
 
-		switch (domain) {
-		case CUSTOMER:
+				CustomerController customerController = new CustomerController(
+						new CustomerServices(new CustomerDaoMysql(username, password)));
+				doAction(customerController, action);
+				break;
+			case ITEM:
+				ItemController itemController = new ItemController(
+						new ItemServices(new ItemDaoMysql(username, password)));
+				doAction(itemController, action);
+				break;
+			case ORDER:
+				OrderController orderController = new OrderController(
+						new OrderServices(new OrderDaoMysql(username, password)));
+				doAction(orderController, action);
+				break;
+			case EXIT:
+				break;
+			default:
+				break;
+			}
 
-			CustomerController customerController = new CustomerController(
-					new CustomerServices(new CustomerDaoMysql(username, password)));
-			doAction(customerController, action);
-			break;
-		case ITEM:
-			ItemController itemController = new ItemController(
-					new ItemServices(new ItemDaoMysql(username, password)));
-			doAction(itemController, action);
-			break;
-		case ORDER:
-			OrderController orderController = new OrderController(
-					new OrderServices(new OrderDaoMysql(username, password)));
-			doAction(orderController, action);
-			break;
-		case STOP:
-			break;
-		default:
-			break;
 		}
-
 	}
 
 	public void doAction(CrudController<?> crudController, Action action) {
