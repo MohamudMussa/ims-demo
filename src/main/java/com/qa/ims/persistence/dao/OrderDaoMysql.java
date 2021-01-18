@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.qa.ims.controller.OrderController;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.Utils;
@@ -48,10 +49,9 @@ public class OrderDaoMysql implements Dao<Order> {
 	}
 	
 	Order addingANewOrderline(ResultSet resultSet) throws SQLException {
-		Long order_id = resultSet.getLong("order_id");
-		Long item_id = resultSet.getLong("item_id");
+		Long orderline_id = resultSet.getLong("orderline_id");
 
-		return new Order(order_id, item_id);
+		return new Order(orderline_id);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class OrderDaoMysql implements Dao<Order> {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM Orderline ORDER BY orderline_id DESC LIMIT 1");) {
 			resultSet.next();
-			return OrderFromResultSet(resultSet);
+			return addingANewOrderline(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -113,33 +113,33 @@ public class OrderDaoMysql implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("insert into Orders(customer_id) values('" + Order.getCustomer_id() + "')");
-
-
-	
-			
 			return readLatest();
+			
+			
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
 		
-		
-		
-		Item getID = new Item();
-		LOGGER.info("Please enter ITEM ID from the list above");	
-		Long order_id = Order.getOrder_id();
-		Long item_id = getID.getItem_id();
-		Integer quantity = Integer	.valueOf(getInput());
+//		LOGGER.info("Please enter ITEM ID from the list above");
+//		Long item_id = Long.valueOf(getInput());
+//		Long order_id = readLatest().getOrder_id();
+//
+//		LOGGER.info("Please enter how many of this Item you'd like");
+//		Integer quantity = Integer.valueOf(getInput());
+//		
 
-		addtoOrderline(order_id, item_id, quantity);
 		return null;
 	}
 
 	//adding item to orderline
-	public Order addtoOrderline(Long order_id, Long item_id, int quantity) {
+	public Order addtoOrderline(Order order) {
+		Item item = order.getItem();
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("insert into orderline(order_id, item_id, quantity) values('" + order_id + item_id + quantity + "')");
+			LOGGER.info(item.getItem_id());
+			statement.executeUpdate("insert into orderline(order_id, item_id, quantity) values(" + order.getOrder_id() + "," + item.getItem_id() + "," + order.getQuantity() + ")");
+			
 			return readLatesOrderline();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -198,5 +198,8 @@ public class OrderDaoMysql implements Dao<Order> {
 			LOGGER.error(e.getMessage());
 		}
 	}
+
+	
+
 
 }

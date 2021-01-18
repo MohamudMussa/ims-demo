@@ -1,20 +1,50 @@
 package com.qa.ims.persistence.domain;
 
+import java.util.ArrayList;
+
 public class Order {
 
 	private Long order_id;
 	private Long customer_id;
+	private ArrayList<Item> item_list = new ArrayList<>();
+	private Integer quantity;
+	private Item item = null;
+	
 	
 	public Order(Long customer_id) {
 		this.customer_id = customer_id;
 	}
+	
 
 	public Order(Long order_id, Long customer_id) {
 		this.order_id = order_id;
 		this.customer_id = customer_id;
-
-		;
 	}
+	
+
+	public Order(Long order_id, Long customer_id, ArrayList<Item> item_list) {
+
+		this.order_id = order_id;
+		this.customer_id = customer_id;
+		this.item_list = item_list;
+	}
+	
+	
+	
+	public Item getItem() {
+		return item;
+	}
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
+	public void addItemsInOrder(Item item) {
+		this.item_list.add(item);
+	}
+	
 
 	public Long getOrder_id() {
 		return order_id;
@@ -30,6 +60,22 @@ public class Order {
 
 	public void setCustomer_id(Long customer_id) {
 		this.customer_id = customer_id;
+	}
+
+	public ArrayList<Item> getItem_list() {
+		return item_list;
+	}
+
+	public void setItem_list(ArrayList<Item> item_list) {
+		this.item_list = item_list;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	@Override
@@ -67,5 +113,7 @@ public class Order {
 			return false;
 		return true;
 	}
+
+
 
 }

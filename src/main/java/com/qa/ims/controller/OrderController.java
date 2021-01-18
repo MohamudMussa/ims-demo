@@ -1,5 +1,6 @@
 package com.qa.ims.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -8,7 +9,7 @@ import com.qa.ims.persistence.dao.OrderDaoMysql;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.services.CrudServices;
-
+import com.qa.ims.services.OrderServices;
 import com.qa.ims.utils.Utils;
 
 /**
@@ -48,29 +49,68 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
+		
+	
 		LOGGER.info("Please enter the Customer ID");
 		Long customer_id = Long.valueOf(getInput());
-		Order Order = orderServices.create(new Order(customer_id));
-		LOGGER.info("Order Created" + " " + "here is the Order_ID:" + " " + Order.getOrder_id());
-
-		// SHOW THEM A LIST OF ITEMS VIA ITEM_ID
-
-
-		LOGGER.info("Please select one of the following Items below");
-		LOGGER.info("----------------------------------------------");
+		Order order = new Order(customer_id);
+		order = orderServices.create(order);
 		
 		
-		//fix
-		List<Item> Items = itemServices.readAll();
-		for (Item item : Items) {
-			LOGGER.info(item.toString());
 		
+		List<Item> items = itemServices.readAll();
+		Item item = null;
+		LOGGER.info("Would you like to add an order to this item");
+		Boolean loopy = false;
+		String tnp = "";
+
 			
+			while (!loopy) {
+				LOGGER.info("Please enter ITEM ID");
+				Long item_id = Long.valueOf(getInput());
+				LOGGER.info("Please enter the Quantity of the ITEM that you'd like");
+				Integer quantity = Integer.valueOf(getInput());
+				
 
+				for(Item i : items) {
+					if(i.getItem_id() == item_id) {
+						item = i;
+						break;
+					}
+				}
+
+
+				LOGGER.info("----------------------------------------------");
+
+
+				order.setItem(item);
+				order.setQuantity(quantity);
+				order = orderServices.additems(order);
+				LOGGER.info("ARE U DONE N OR Y ");
+				tnp = getInput().toLowerCase();
+				if (tnp.contentEquals("y")) {
+					loopy = true;
+				}
+				
+			}
+			LOGGER.info("Done");
+			return order;
+			
+		}
+	
+
+		
+	
+		
+		//Order Orderline = orderServices.(new Order(Order.getOrder_id(), 1L, 1));
+
+		//od.addtoOrderline(1L, 1L, 0);	
+		// item from list and add to orderline 
+			//while loop start	
 
 		// SELECT THE ITEM YOU WANT TO ADD TO THE LIST
-			//LOGGER.info("Please enter the id of the Item you would like to update");
-			//Long item_id = Long.valueOf(getInput());	
+		
+			//
 			//Item Item = itemServices.update(new orderline(item_id, item_id, item_price));
 			// HOW MANY OF THIS ITEM DO YOU WANT ----> STORE IN QUANTITY WITH CURRENT
 			// ORDERLINE_ID
@@ -81,9 +121,9 @@ public class OrderController implements CrudController<Order> {
 
 			// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE
 			// THE QUANTITY
-		}
-		return Order;
-	}
+	
+	
+
 
 	/**
 	 * Updates an existing Order by taking in user input
@@ -96,7 +136,7 @@ public class OrderController implements CrudController<Order> {
 		Long customer_id = Long.valueOf(getInput());
 		Order Order = orderServices.update(new Order(order_id, customer_id));
 		LOGGER.info("Order Updated");
-		return Order;
+		return Order; 
 	}
 
 	/**

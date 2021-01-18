@@ -16,6 +16,10 @@ public class OrderServices implements CrudServices<Order> {
 	public List<Order> readAll() {
 		return orderDao.readAll();
 	}
+	
+	public Order additems(Order Order) {
+		return orderDao.addtoOrderline(Order);
+	}
 
 	public Order create(Order Order) {
 		return orderDao.create(Order);
