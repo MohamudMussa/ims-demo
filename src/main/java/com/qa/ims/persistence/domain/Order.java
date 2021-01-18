@@ -4,8 +4,7 @@ public class Order {
 
 	private Long order_id;
 	private Long customer_id;
-
-
+	
 	public Order(Long customer_id) {
 		this.customer_id = customer_id;
 	}
@@ -16,9 +15,6 @@ public class Order {
 
 		;
 	}
-	
-
-
 
 	public Long getOrder_id() {
 		return order_id;
@@ -36,9 +32,6 @@ public class Order {
 		this.customer_id = customer_id;
 	}
 
-	
-	
-	
 	@Override
 	public String toString() {
 		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + "]";
@@ -74,7 +67,5 @@ public class Order {
 			return false;
 		return true;
 	}
-
-	
 
 }

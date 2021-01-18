@@ -20,6 +20,7 @@ public class OrderServices implements CrudServices<Order> {
 	public Order create(Order Order) {
 		return orderDao.create(Order);
 	}
+	
 
 	public Order update(Order Order) {
 		return orderDao.update(Order);
@@ -27,6 +28,13 @@ public class OrderServices implements CrudServices<Order> {
 
 	public void delete(Long Order_id) {
 		orderDao.delete(Order_id);
+	}
+	
+	//new service
+	
+	public Order creatingOrder(Order Orderline) {
+		return orderDao.create(Orderline);
+		
 	}
 
 }

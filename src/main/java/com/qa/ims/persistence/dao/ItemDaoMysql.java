@@ -48,7 +48,7 @@ public class ItemDaoMysql implements Dao<Item> {
 	public List<Item> readAll() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from Items");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM Items");) {
 			ArrayList<Item> Items = new ArrayList<>();
 			while (resultSet.next()) {
 				Items.add(itemFromResultSet(resultSet));
@@ -93,6 +93,7 @@ public class ItemDaoMysql implements Dao<Item> {
 		}
 		return null;
 	}
+
 
 	public Item readItem(Long item_id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);

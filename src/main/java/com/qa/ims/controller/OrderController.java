@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.qa.ims.Ims;
-import com.qa.ims.persistence.dao.ItemDaoMysql;
+import com.qa.ims.persistence.dao.OrderDaoMysql;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.services.CrudServices;
-import com.qa.ims.services.ItemServices;
+
 import com.qa.ims.utils.Utils;
 
 /**
@@ -52,30 +51,36 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter the Customer ID");
 		Long customer_id = Long.valueOf(getInput());
 		Order Order = orderServices.create(new Order(customer_id));
-		LOGGER.info("Order Created" + "Here is the Order_ID" + " " + Order.getOrder_id());
+		LOGGER.info("Order Created" + " " + "here is the Order_ID:" + " " + Order.getOrder_id());
 
 		// SHOW THEM A LIST OF ITEMS VIA ITEM_ID
 
-		LOGGER.info("Please select one of the following Items below");
 
+		LOGGER.info("Please select one of the following Items below");
+		LOGGER.info("----------------------------------------------");
+		
+		
+		//fix
 		List<Item> Items = itemServices.readAll();
 		for (Item item : Items) {
 			LOGGER.info(item.toString());
-			
 		
 			
+
+
 		// SELECT THE ITEM YOU WANT TO ADD TO THE LIST
-			
-		// HOW MANY OF THIS ITEM DO YOU WANT ----> STORE IN QUANTITY WITH CURRENT ORDERLINE_ID
-			
-			
-		// DO YOUU WANT TO ADD ANOTHER ITEM 
-			
-		
-		// IF NO, CREATE ORDER, STORE INFORAMTION IN ORDERLINE, 
-			
-			
-		// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE THE QUANTITY 
+			//LOGGER.info("Please enter the id of the Item you would like to update");
+			//Long item_id = Long.valueOf(getInput());	
+			//Item Item = itemServices.update(new orderline(item_id, item_id, item_price));
+			// HOW MANY OF THIS ITEM DO YOU WANT ----> STORE IN QUANTITY WITH CURRENT
+			// ORDERLINE_ID
+
+			// DO YOUU WANT TO ADD ANOTHER ITEM
+
+			// IF NO, CREATE ORDER, STORE INFORAMTION IN ORDERLINE,
+
+			// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE
+			// THE QUANTITY
 		}
 		return Order;
 	}

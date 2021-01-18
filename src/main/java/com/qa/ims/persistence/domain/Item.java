@@ -1,10 +1,11 @@
 package com.qa.ims.persistence.domain;
 
 public class Item {
-
-	private Long item_id;
-	private String item_name;
-	private Double item_price;
+	
+	
+	private  Long item_id;
+	private  String item_name;
+	private  Double item_price;
 
 	public Item(String item_name, Double item_price) {
 		this.item_name = item_name;
@@ -19,6 +20,9 @@ public class Item {
 		;
 	}
 
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getItem_id() {
 		return item_id;
