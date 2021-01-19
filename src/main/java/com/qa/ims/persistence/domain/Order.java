@@ -9,8 +9,43 @@ public class Order {
 	private ArrayList<Item> item_list = new ArrayList<>();
 	private Integer quantity;
 	private Item item = null;
+	private Integer orderline_price;
+	private String first_name;
+	private String surname;
+	private String address;
+	private Long item_id; 
+
 	
-	
+	public String getFirst_name() {
+		return first_name;
+	}
+
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+
+	public String getSurname() {
+		return surname;
+	}
+
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
 	public Order(Long customer_id) {
 		this.customer_id = customer_id;
 	}
@@ -18,7 +53,7 @@ public class Order {
 
 	public Order(Long order_id, Long customer_id) {
 		this.order_id = order_id;
-		this.customer_id = customer_id;
+		this.customer_id = customer_id; 
 	}
 	
 
@@ -31,6 +66,20 @@ public class Order {
 	
 	
 	
+	public Order(Long order_id, Long customer_id, Integer quantity, Long item_id,
+			Integer orderline_price, String first_name, String surname, String address) {
+		super();
+		this.order_id = order_id;
+		this.customer_id = customer_id;
+		this.quantity = quantity;
+		this.item_id = item_id;
+		this.orderline_price = orderline_price;
+		this.first_name = first_name;
+		this.surname = surname;
+		this.address = address;
+	}
+
+
 	public Item getItem() {
 		return item;
 	}
@@ -78,10 +127,15 @@ public class Order {
 		this.quantity = quantity;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + "]";
+		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + ", item_id=" + item_id
+				+ ", quantity=" + quantity + ", orderline_price=" + orderline_price + ", first_name="
+				+ first_name + ", surname=" + surname + ", address=" + address + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -112,6 +166,26 @@ public class Order {
 		} else if (!order_id.equals(other.order_id))
 			return false;
 		return true;
+	}
+
+
+	public Integer getOrderline_price() {
+		return orderline_price;
+	}
+
+
+	public void setOrderline_price(Integer orderline_price) {
+		this.orderline_price = orderline_price;
+	}
+
+
+	public Long getItem_id() {
+		return item_id;
+	}
+
+
+	public void setItem_id(Long item_id) {
+		this.item_id = item_id;
 	}
 
 

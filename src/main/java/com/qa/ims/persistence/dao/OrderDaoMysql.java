@@ -44,7 +44,22 @@ public class OrderDaoMysql implements Dao<Order> {
 	static Order OrderFromResultSet(ResultSet resultSet) throws SQLException {
 		Long order_id = resultSet.getLong("order_id");
 		Long customer_id = resultSet.getLong("customer_id");
-
+		//Long orderline_id = resultSet.getLong("orderline_id");
+		Long item_id = resultSet.getLong("item_id"); 
+		Integer quantity = resultSet.getInt("quantity");
+		Integer orderline_price = resultSet.getInt("orderline_price");
+		String first_name = resultSet.getString("first_name");
+		String surname = resultSet.getString("surname");
+		String address = resultSet.getString("address");
+		
+		return new Order(order_id, customer_id, quantity, item_id, orderline_price, first_name, surname, address);
+	}
+	
+	
+	static Order OrderFromCreate(ResultSet resultSet) throws SQLException {
+		Long order_id = resultSet.getLong("order_id");
+		Long customer_id = resultSet.getLong("customer_id");
+		
 		return new Order(order_id, customer_id);
 	}
 	
@@ -63,7 +78,7 @@ public class OrderDaoMysql implements Dao<Order> {
 	public List<Order> readAll() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from Orders");) {
+				ResultSet resultSet = statement.executeQuery("select ol.order_id, ol.item_id, ol.quantity, ol.orderline_price, cu.customer_id, cu.first_name , cu.surname, cu.address from orderline ol JOIN orders on orders.order_id=ol.order_id join items on items.item_id=ol.item_id LEFT JOIN customers cu on cu.customer_id=orders.customer_id");) {
 			ArrayList<Order> Orders = new ArrayList<>();
 			while (resultSet.next()) {
 				Orders.add(OrderFromResultSet(resultSet));
@@ -82,7 +97,7 @@ public class OrderDaoMysql implements Dao<Order> {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders ORDER BY order_id DESC LIMIT 1");) {
 			resultSet.next();
-			return OrderFromResultSet(resultSet);
+			return OrderFromCreate(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -115,11 +130,12 @@ public class OrderDaoMysql implements Dao<Order> {
 			statement.executeUpdate("insert into Orders(customer_id) values('" + Order.getCustomer_id() + "')");
 			return readLatest();
 			
-			
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
+		
+		
 		
 //		LOGGER.info("Please enter ITEM ID from the list above");
 //		Long item_id = Long.valueOf(getInput());
@@ -138,8 +154,7 @@ public class OrderDaoMysql implements Dao<Order> {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			LOGGER.info(item.getItem_id());
-			statement.executeUpdate("insert into orderline(order_id, item_id, quantity) values(" + order.getOrder_id() + "," + item.getItem_id() + "," + order.getQuantity() + ")");
-			
+			statement.executeUpdate("insert into orderline(order_id, item_id, quantity, orderline_price) values(" + order.getOrder_id() + "," + item.getItem_id() + "," + order.getQuantity() +  "," + order.getOrderline_price() +")");
 			return readLatesOrderline();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -181,6 +196,8 @@ public class OrderDaoMysql implements Dao<Order> {
 		}
 		return null;
 	}
+	
+	
 
 	/**
 	 * Deletes a Order in the database
@@ -199,7 +216,17 @@ public class OrderDaoMysql implements Dao<Order> {
 		}
 	}
 
-	
+	public Order addToOrder(Order Order) {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();) {
+			statement.executeUpdate("insert into Orders(order_id) values('" + Order.getItem_id() + "')");
+			return readLatest();
+			
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return Order;
 
-
+	}
 }

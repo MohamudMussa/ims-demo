@@ -49,94 +49,101 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
-		
-	
+
 		LOGGER.info("Please enter the Customer ID");
 		Long customer_id = Long.valueOf(getInput());
 		Order order = new Order(customer_id);
 		order = orderServices.create(order);
-		
-		
-		
+
 		List<Item> items = itemServices.readAll();
 		Item item = null;
 		LOGGER.info("Would you like to add an order to this item");
 		Boolean loopy = false;
 		String tnp = "";
 
-			
-			while (!loopy) {
-				LOGGER.info("Please enter ITEM ID");
-				Long item_id = Long.valueOf(getInput());
-				LOGGER.info("Please enter the Quantity of the ITEM that you'd like");
-				Integer quantity = Integer.valueOf(getInput());
-				
+		while (!loopy) {
+			LOGGER.info("Please enter ITEM ID");
+			Long item_id = Long.valueOf(getInput());
+			LOGGER.info("Please enter the Quantity of the ITEM that you'd like");
+			Integer quantity = Integer.valueOf(getInput());
 
-				for(Item i : items) {
-					if(i.getItem_id() == item_id) {
-						item = i;
-						break;
-					}
+			for (Item i : items) {
+				if (i.getItem_id() == item_id) {
+					item = i;
+					LOGGER.info("You have added" +  " " + quantity +" " + "of the below Item" );
+					System.out.println(i);
+					break;
 				}
-
-
-				LOGGER.info("----------------------------------------------");
-
-
-				order.setItem(item);
-				order.setQuantity(quantity);
-				order = orderServices.additems(order);
-				LOGGER.info("ARE U DONE N OR Y ");
-				tnp = getInput().toLowerCase();
-				if (tnp.contentEquals("y")) {
-					loopy = true;
-				}
-				
 			}
-			LOGGER.info("Done");
-			return order;
-			
+
+			order.setItem(item);
+			int final_price = (int) (item.getItem_price() * quantity);
+			order.setQuantity(quantity);
+			order.setOrderline_price(final_price);
+			order = orderServices.additems(order);
+			LOGGER.info("ADD: To add another Item to the order ");
+			LOGGER.info("RETURN: TO EXIT ");
+			tnp = getInput().toLowerCase();
+			if (tnp.contentEquals("return")) {
+				loopy = true;
+			}
+
 		}
-	
+		LOGGER.info("Done");
+		return order;
 
-		
-	
-		
-		//Order Orderline = orderServices.(new Order(Order.getOrder_id(), 1L, 1));
+	}
 
-		//od.addtoOrderline(1L, 1L, 0);	
-		// item from list and add to orderline 
-			//while loop start	
+	// Order Orderline = orderServices.(new Order(Order.getOrder_id(), 1L, 1));
 
-		// SELECT THE ITEM YOU WANT TO ADD TO THE LIST
-		
-			//
-			//Item Item = itemServices.update(new orderline(item_id, item_id, item_price));
-			// HOW MANY OF THIS ITEM DO YOU WANT ----> STORE IN QUANTITY WITH CURRENT
-			// ORDERLINE_ID
+	// od.addtoOrderline(1L, 1L, 0);
+	// item from list and add to orderline
+	// while loop start
 
-			// DO YOUU WANT TO ADD ANOTHER ITEM
+	// SELECT THE ITEM YOU WANT TO ADD TO THE LIST
 
-			// IF NO, CREATE ORDER, STORE INFORAMTION IN ORDERLINE,
+	//
+	// Item Item = itemServices.update(new orderline(item_id, item_id, item_price));
+	// HOW MANY OF THIS ITEM DO YOU WANT ----> STORE IN QUANTITY WITH CURRENT
+	// ORDERLINE_ID
 
-			// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE
-			// THE QUANTITY
-	
-	
+	// DO YOUU WANT TO ADD ANOTHER ITEM
 
+	// IF NO, CREATE ORDER, STORE INFORAMTION IN ORDERLINE,
+
+	// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE
+	// THE QUANTITY
 
 	/**
 	 * Updates an existing Order by taking in user input
 	 */
 	@Override
 	public Order update() {
-		LOGGER.info("Please enter the Order ID thay you'd like toupdate");
+		
+		List<Order> orders = orderServices.readAll();
+
+		
+		
+		LOGGER.info("Please enter the Order ID thay you'd like to update");
 		Long order_id = Long.valueOf(getInput());
+		
+		
+		
+		for (Order i : orders) {
+			Order order = null;
+			while (i.getOrder_id() == order_id) {
+				order = i;
+				System.out.println(i);
+				break;
+			}
+		}
+		
+		
 		LOGGER.info("Please enter the new customer ID you'd like to connect to this order");
 		Long customer_id = Long.valueOf(getInput());
 		Order Order = orderServices.update(new Order(order_id, customer_id));
 		LOGGER.info("Order Updated");
-		return Order; 
+		return Order;
 	}
 
 	/**
