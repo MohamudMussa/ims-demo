@@ -151,4 +151,10 @@ public class ItemDaoMysql implements Dao<Item> {
 		return null;
 	}
 
+	@Override
+	public void deleteOrder(long order_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

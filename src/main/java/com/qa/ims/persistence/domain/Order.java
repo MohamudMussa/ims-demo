@@ -3,7 +3,7 @@ package com.qa.ims.persistence.domain;
 import java.util.ArrayList;
 
 public class Order {
-
+	private Long orderline_id;
 	private Long order_id;
 	private Long customer_id;
 	private ArrayList<Item> item_list = new ArrayList<>();
@@ -14,6 +14,7 @@ public class Order {
 	private String surname;
 	private String address;
 	private Long item_id; 
+
 
 	
 	public String getFirst_name() {
@@ -66,9 +67,10 @@ public class Order {
 	
 	
 	
-	public Order(Long order_id, Long customer_id, Integer quantity, Long item_id,
+	public Order(Long orderline_id, Long order_id, Long customer_id, Integer quantity, Long item_id,
 			Integer orderline_price, String first_name, String surname, String address) {
 		super();
+		this.orderline_id = orderline_id;;
 		this.order_id = order_id;
 		this.customer_id = customer_id;
 		this.quantity = quantity;
@@ -129,11 +131,14 @@ public class Order {
 
 	
 
+
+
 	@Override
 	public String toString() {
-		return "Order [order_id=" + order_id + ", customer_id=" + customer_id + ", item_id=" + item_id
-				+ ", quantity=" + quantity + ", orderline_price=" + orderline_price + ", first_name="
-				+ first_name + ", surname=" + surname + ", address=" + address + "]";
+		return "Order [orderline_id=" + orderline_id + ", order_id=" + order_id + ", customer_id=" + customer_id
+				+ ", item_id=" + item_id + ", quantity=" + quantity + ", orderline_price=" + orderline_price
+				+ ", first_name=" + first_name + ", surname=" + surname + ", address=" + address + ", item_id="
+				+ item_id + "]";
 	}
 
 
@@ -186,6 +191,16 @@ public class Order {
 
 	public void setItem_id(Long item_id) {
 		this.item_id = item_id;
+	}
+
+
+	public Long getOrderline_id() {
+		return orderline_id;
+	}
+
+
+	public void setOrderline_id(Long orderline_id) {
+		this.orderline_id = orderline_id;
 	}
 
 

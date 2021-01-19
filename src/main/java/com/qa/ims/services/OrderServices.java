@@ -41,4 +41,9 @@ public class OrderServices implements CrudServices<Order> {
 		
 	}
 
+	@Override
+	public void deleteOrder(Long order_id1) {
+		orderDao.deleteOrder(order_id1);		
+	}
+
 }

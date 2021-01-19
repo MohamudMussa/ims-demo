@@ -13,5 +13,12 @@ public interface Dao<T> {
     T update(T t);
      
     void delete(long id);
+
+	/**
+	 * Deletes a Order in the database
+	 * 
+	 * @param order_id - order_id of the Order
+	 */
+	void deleteOrder(long order_id);
 }
 	

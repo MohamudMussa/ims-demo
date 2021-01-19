@@ -14,4 +14,6 @@ public interface CrudServices<T> {
  
     void delete(Long id);
 
+	public void deleteOrder(Long order_id1);
+
 }

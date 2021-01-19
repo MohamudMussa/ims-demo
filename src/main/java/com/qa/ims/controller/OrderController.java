@@ -151,10 +151,65 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public void delete() {
-		LOGGER.info("Please enter the id of the Order you would like to delete");
-		Long Order_id = Long.valueOf(getInput());
-		LOGGER.info("Order Deleted");
-		orderServices.delete(Order_id);
+		
+		LOGGER.info("Would you like to delete and ITEM from an order or Delete a entier ORDER");
+		String select = String.valueOf(getInput().toLowerCase());
+		
+		switch (select) {
+		case "item":
+			
+			LOGGER.info("Please enter the id of the Order you would like to delete an item from");
+			Long Order_id = Long.valueOf(getInput());
+			List<Order> orders = orderServices.readAll();
+			
+			for (Order i : orders) {
+				Order order = null;
+				while (i.getOrder_id() == Order_id) {
+					order = i;
+					System.out.println(i);
+					break;
+				}
+			}
+			LOGGER.info("SELECT ITEM FROM ORDER BY CHOOSING THE CORRECT ORDERLINE_ID");
+			Long orderline_id = Long.valueOf(getInput());
+			
+		
+			LOGGER.info("Item has been Deleted");
+			orderServices.delete(orderline_id);
+			
+			
+			
+			break;
+			
+	case "order":
+		List<Order> orders1 = orderServices.readAll();
+			LOGGER.info("Please enter the id of the Order you would like to delete");
+			Long Order_id1 = Long.valueOf(getInput());
+
+			for (Order i : orders1) {
+				Order order = null;
+				while (i.getOrder_id() == Order_id1) {
+					order = i;
+					System.out.println(i);
+					break;
+				}
+			}
+		
+			LOGGER.info("These orders have been Deleted");
+			orderServices.deleteOrder(Order_id1);
+			
+			
+			
+			break;
+
+		default:
+			
+			
+			
+			break;
+		}
+		
+		
 	}
 
 }

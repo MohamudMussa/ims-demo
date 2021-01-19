@@ -42,6 +42,7 @@ public class OrderDaoMysql implements Dao<Order> {
 	}
 
 	static Order OrderFromResultSet(ResultSet resultSet) throws SQLException {
+		Long orderline_id = resultSet.getLong("orderline_id");
 		Long order_id = resultSet.getLong("order_id");
 		Long customer_id = resultSet.getLong("customer_id");
 		//Long orderline_id = resultSet.getLong("orderline_id");
@@ -52,7 +53,7 @@ public class OrderDaoMysql implements Dao<Order> {
 		String surname = resultSet.getString("surname");
 		String address = resultSet.getString("address");
 		
-		return new Order(order_id, customer_id, quantity, item_id, orderline_price, first_name, surname, address);
+		return new Order(orderline_id, order_id, customer_id, quantity, item_id, orderline_price, first_name, surname, address);
 	}
 	
 	
@@ -78,7 +79,7 @@ public class OrderDaoMysql implements Dao<Order> {
 	public List<Order> readAll() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select ol.order_id, ol.item_id, ol.quantity, ol.orderline_price, cu.customer_id, cu.first_name , cu.surname, cu.address from orderline ol JOIN orders on orders.order_id=ol.order_id join items on items.item_id=ol.item_id LEFT JOIN customers cu on cu.customer_id=orders.customer_id");) {
+				ResultSet resultSet = statement.executeQuery("select ol.orderline_id, ol.order_id, ol.item_id, ol.quantity, ol.orderline_price, cu.customer_id, cu.first_name , cu.surname, cu.address from orderline ol JOIN orders on orders.order_id=ol.order_id join items on items.item_id=ol.item_id LEFT JOIN customers cu on cu.customer_id=orders.customer_id");) {
 			ArrayList<Order> Orders = new ArrayList<>();
 			while (resultSet.next()) {
 				Orders.add(OrderFromResultSet(resultSet));
@@ -205,10 +206,29 @@ public class OrderDaoMysql implements Dao<Order> {
 	 * @param order_id - order_id of the Order
 	 */
 	@Override
-	public void delete(long order_id) {
+	public void delete(long orderline_id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("delete from Orders where order_id = " + order_id);
+			statement.executeUpdate("delete from Orderline where orderline_id = " + orderline_id);
+
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * Deletes a Order in the database
+	 * 
+	 * @param order_id - order_id of the Order
+	 */
+	@Override
+	public void deleteOrder(long order_id) {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();) {
+			statement.executeUpdate("delete from Orderline where order_id = " + order_id);
+			statement.executeUpdate("delete from orders where order_id = " + order_id);
 
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());

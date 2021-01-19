@@ -35,4 +35,12 @@ public class CustomerServices implements CrudServices<Customer> {
 		return null;
 	}
 
+	@Override
+	public void deleteOrder(Long order_id1) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
 }

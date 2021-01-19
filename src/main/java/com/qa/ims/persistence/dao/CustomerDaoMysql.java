@@ -152,4 +152,10 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		return null;
 	}
 
+	@Override
+	public void deleteOrder(long order_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
