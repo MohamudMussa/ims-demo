@@ -15,6 +15,19 @@ public class Order {
 	private String address;
 	private Long item_id;
 
+	
+	
+	public Order(Long order_id, Long item_id, Integer quantity, Integer orderline_price) {
+		this.order_id = order_id;
+		this.quantity = quantity;
+		this.orderline_price = orderline_price;
+		this.item_id = item_id;
+	}
+
+	public Order() {
+		
+	}
+
 	public String getFirst_name() {
 		return first_name;
 	}

@@ -40,10 +40,18 @@ public class OrderServices implements CrudServices<Order> {
 		return orderDao.create(Orderline);
 		
 	}
+	
+
 
 	@Override
 	public void deleteOrder(Long order_id1) {
 		orderDao.deleteOrder(order_id1);		
+	}
+
+	@Override
+	public Order updateOrderline(Order t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

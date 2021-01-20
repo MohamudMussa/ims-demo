@@ -65,7 +65,7 @@ public class OrderController implements CrudController<Order> {
 		while (!loopy) {
 			LOGGER.info("Please enter your Order ID ");
 			Long order_id = Long.valueOf(getInput());
-			
+
 			LOGGER.info("Please enter ITEM ID you'd like to add");
 			Long item_id = Long.valueOf(getInput());
 
@@ -99,7 +99,6 @@ public class OrderController implements CrudController<Order> {
 
 	}
 
-
 	// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE
 	// THE QUANTITY
 
@@ -111,53 +110,67 @@ public class OrderController implements CrudController<Order> {
 
 		LOGGER.info("ADD - to add an ITEM to an exisiting order");
 		LOGGER.info("UPDATE - to assign another customer to an exisiting order ");
-		List<Order> orders = orderServices.readAll(); 
-	
-		
-		List<Item> items = itemServices.readAll();
-		Item item = null;
-		
+
+
+
 		String selectoption1 = String.valueOf(getInput().toLowerCase());
 
 		switch (selectoption1) {
-		
+
 		case "add":
-			
+
+			Order order = new Order();
 			LOGGER.info("Please enter the Order ID thay you'd like to update");
 			Long order_id1 = Long.valueOf(getInput());
-			
-			Order order = new Order(order_id1);
-			order = orderServices.create(order);
 
-
-			
 			LOGGER.info("Please enter ITEM ID you'd like to add");
 			Long item_id = Long.valueOf(getInput());
-			
+
 			LOGGER.info("Please enter the Quantity of the ITEM that you'd like");
 			Integer quantity = Integer.valueOf(getInput());
 
-			
+			Item item = null;
+			List<Item> items = itemServices.readAll();
+
+			for (Item i : items) {
+				if (i.getItem_id() == item_id) {
+					item = i;
+					LOGGER.info("You have added" + " " + quantity + " " + "of the below Item");
+					System.out.println(i);
+					break;
+				}
+			}
+
 			order.setOrder_id(order_id1);
+			order.getCustomer_id();
+
+			order.setItem_id(item_id);
+			//System.out.println(order.getOrder_id());
 			order.setItem(item);
+			//LOGGER.info(item);
+			// issue
 			int final_price = (int) (item.getItem_price() * quantity);
 			order.setQuantity(quantity);
 			order.setOrderline_price(final_price);
+			//order = orderServices.additems(new Order(order_id1, item_id, quantity, final_price));
 			order = orderServices.additems(order);
-			
+			LOGGER.info("order has been updated");
+			// order = orderServices.updateOrderline(new Order(order_id1, item_id, quantity,
+			// final_price ));
+
 			return order;
 
 		case "update":
-			
-	
+
 			LOGGER.info("Please enter the Order ID thay you'd like to update");
 			Long order_id = Long.valueOf(getInput());
-
+			
+			List<Order> orders = orderServices.readAll();
 			for (Order i : orders) {
 				Order order1 = null;
 				while (i.getOrder_id() == order_id) {
 					order1 = i;
-					System.out.println(i);
+					System.out.println(order1);
 					break;
 				}
 			}
@@ -174,7 +187,6 @@ public class OrderController implements CrudController<Order> {
 		}
 
 		return null;
-
 
 	}
 

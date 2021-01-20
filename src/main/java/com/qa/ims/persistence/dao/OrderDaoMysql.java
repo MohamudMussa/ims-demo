@@ -194,15 +194,26 @@ public class OrderDaoMysql implements Dao<Order> {
 	 * @return
 	 */
 	@Override
-	public Order update(Order Order) {
-
-		
+	public Order update(Order Order) {	
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update orderline set order_id ='" + Order.getOrder_id() + "' where order_id =" + Order.getOrder_id());
 			statement.executeUpdate("update Orders set order_id ='" + Order.getOrder_id() + "', customer_id ='"
 					+ Order.getCustomer_id() + "' where order_id =" + Order.getOrder_id());
 			return readOrder(Order.getOrder_id());
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
+	
+	public Order updateOrderline(Order Order) {
+		Item item = Order.getItem();
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();) {
+			statement.executeUpdate("insert into orderline(order_id, item_id, quantity, orderline_price) values(" + Order.getOrder_id() + "," + item.getItem_id() + "," + Order.getQuantity() +  "," + Order.getOrderline_price() +")");
+			return readLatesOrderline();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());

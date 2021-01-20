@@ -11,6 +11,8 @@ public interface Dao<T> {
     T create(T t);
      
     T update(T t);
+    
+    T updateOrderline(T t);
      
     void delete(long id);
 
