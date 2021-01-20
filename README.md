@@ -9,7 +9,7 @@ This is an  ** Inventory Management Aystem Application ** that was build using J
 * [Prerequisite](#Prerequisite)
 * [Installing](#Installing)
 * [Running the tests](#Running_the_tests)
-* [Installing](#Installing)
+* [Integration Tests ](#Integration_Tests)
 
 
 ## Technologies
@@ -24,7 +24,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisite
 
 * [Eclipse](https://www.eclipse.org/downloads/)
-* [Eclipse](https://www.mysql.com/downloads/)
+* [MySQL](https://www.mysql.com/downloads/)
 
 
 
@@ -101,6 +101,5 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thank you to Aswene and Vinesh for teaching me Java, SQL etc.
+

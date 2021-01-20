@@ -145,18 +145,16 @@ public class OrderController implements CrudController<Order> {
 			order.getCustomer_id();
 
 			order.setItem_id(item_id);
-			//System.out.println(order.getOrder_id());
 			order.setItem(item);
-			//LOGGER.info(item);
-			// issue
+
 			int final_price = (int) (item.getItem_price() * quantity);
+			
 			order.setQuantity(quantity);
 			order.setOrderline_price(final_price);
-			//order = orderServices.additems(new Order(order_id1, item_id, quantity, final_price));
+			
 			order = orderServices.additems(order);
 			LOGGER.info("order has been updated");
-			// order = orderServices.updateOrderline(new Order(order_id1, item_id, quantity,
-			// final_price ));
+
 
 			return order;
 
