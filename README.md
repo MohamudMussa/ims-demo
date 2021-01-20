@@ -1,8 +1,8 @@
 Coverage: 58%
-# Project Title
+# Inventory Management Aystem Application by Mohamud Mussa
 
 
-This is an  **Inventory Management Aystem Application** that was build using Java and can be interact with via a Command-Line Interface. The inventory management system connects to a database and allows the end user to easily add, update and create an **Order **.  The end user can use the ADD, UPDATE and CREATE functionality for  **Customers** and **Items** as well. This application also allows the end user to calculate the cost of an order. 
+This is an  **Inventory Management Aystem Application** that was build using Java and can be interact with via a Command-Line Interface. The inventory management system connects to a database and allows the end user to easily add, update and create an **Order**.  The end user can use the ADD, UPDATE and CREATE functionality for  **Customers** and **Items** as well. This application also allows the end user to calculate the cost of an order. 
 
 
 ## Getting Started
@@ -86,6 +86,5 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thank you to Vinesh and Aswene for teaching us Java / SQL 
+
