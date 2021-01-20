@@ -40,6 +40,7 @@ public class OrderController implements CrudController<Order> {
 		List<Order> Orders = orderServices.readAll();
 		for (Order Order : Orders) {
 			LOGGER.info(Order.toString());
+			Order.getOrder_id();
 		}
 		return Orders;
 	}
@@ -49,6 +50,9 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
+		
+		
+		
 
 		LOGGER.info("Please enter the Customer ID");
 		Long customer_id = Long.valueOf(getInput());
@@ -236,6 +240,29 @@ public class OrderController implements CrudController<Order> {
 
 			LOGGER.info("These orders have been Deleted");
 			orderServices.deleteOrder(Order_id1);
+
+			break;
+			
+		case "cal":
+			List<Order> orders11 = orderServices.readAll();
+			LOGGER.info("Please enter the id of the Order you would like to delete");
+			Long Order_id11 = Long.valueOf(getInput());
+			int sum = 0;
+			for (Order i : orders11) {
+				Order order = null;
+				while (i.getOrder_id() == Order_id11) {
+					order = i;
+					System.out.println(i);
+					Integer cost = order.getOrderline_price() + sum;
+					
+					break;
+				}
+			}
+			
+			LOGGER.info("BELOW IS THE TOTAL PRICE FOR ALL THESE ORDERS");
+			orderServices.calculateOrder(Order_id11);
+
+
 
 			break;
 

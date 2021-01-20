@@ -13,10 +13,14 @@ public interface CrudServices<T> {
     T update(T t);
     
     T updateOrderline(T t);
+    
+
  
     void delete(Long id);
 
 	public void deleteOrder(Long order_id1);
+
+	public void calculateOrder(Long order_id1);
 	
 
 

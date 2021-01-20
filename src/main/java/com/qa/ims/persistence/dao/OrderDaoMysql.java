@@ -272,4 +272,19 @@ public class OrderDaoMysql implements Dao<Order> {
 		return Order;
 
 	}
+	
+
+	
+	public Order calculateOrder(Long order_id) {
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT orderline_id, order_id, SUM(orderline_price) FROM orderline GROUP BY order_id =" + order_id);) {
+			resultSet.next();
+			return readLatest();
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
 }
