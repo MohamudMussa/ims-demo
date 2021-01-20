@@ -82,6 +82,13 @@ public class Order {
 	}
 
 
+	public Order(Long order_id, Long customer_id, Long item_id) {
+		this.order_id = order_id;
+		this.customer_id = customer_id;
+		this.item_id = item_id;
+	}
+
+
 	public Item getItem() {
 		return item;
 	}

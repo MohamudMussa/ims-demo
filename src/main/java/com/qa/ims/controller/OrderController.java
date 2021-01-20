@@ -54,28 +54,32 @@ public class OrderController implements CrudController<Order> {
 		Long customer_id = Long.valueOf(getInput());
 		Order order = new Order(customer_id);
 		order = orderServices.create(order);
-
+		LOGGER.info("This is your Order ID " + " " + order.getOrder_id());
+		LOGGER.info("Please make a not of it");
 		List<Item> items = itemServices.readAll();
 		Item item = null;
-		LOGGER.info("Would you like to add an order to this item");
 		Boolean loopy = false;
 		String tnp = "";
 
 		while (!loopy) {
+			LOGGER.info("please re enter your order_id");
+			Long order_id = Long.valueOf(getInput());
+			
 			LOGGER.info("Please enter ITEM ID");
 			Long item_id = Long.valueOf(getInput());
+			
 			LOGGER.info("Please enter the Quantity of the ITEM that you'd like");
 			Integer quantity = Integer.valueOf(getInput());
 
 			for (Item i : items) {
 				if (i.getItem_id() == item_id) {
 					item = i;
-					LOGGER.info("You have added" +  " " + quantity +" " + "of the below Item" );
+					LOGGER.info("You have added" + " " + quantity + " " + "of the below Item");
 					System.out.println(i);
 					break;
 				}
 			}
-
+			order.setOrder_id(order_id);
 			order.setItem(item);
 			int final_price = (int) (item.getItem_price() * quantity);
 			order.setQuantity(quantity);
@@ -94,20 +98,6 @@ public class OrderController implements CrudController<Order> {
 
 	}
 
-	// Order Orderline = orderServices.(new Order(Order.getOrder_id(), 1L, 1));
-
-	// od.addtoOrderline(1L, 1L, 0);
-	// item from list and add to orderline
-	// while loop start
-
-	// SELECT THE ITEM YOU WANT TO ADD TO THE LIST
-
-	//
-	// Item Item = itemServices.update(new orderline(item_id, item_id, item_price));
-	// HOW MANY OF THIS ITEM DO YOU WANT ----> STORE IN QUANTITY WITH CURRENT
-	// ORDERLINE_ID
-
-	// DO YOUU WANT TO ADD ANOTHER ITEM
 
 	// IF NO, CREATE ORDER, STORE INFORAMTION IN ORDERLINE,
 
@@ -119,31 +109,79 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order update() {
-		
-		List<Order> orders = orderServices.readAll();
 
+		LOGGER.info("ADD - to add an ITEM to an exisiting order");
+		LOGGER.info("UPDATE - to assign another customer to an exisiting order ");
+		List<Order> orders = orderServices.readAll(); 
+	
 		
+		List<Item> items = itemServices.readAll();
+		Item item = null;
 		
-		LOGGER.info("Please enter the Order ID thay you'd like to update");
-		Long order_id = Long.valueOf(getInput());
+		String selectoption1 = String.valueOf(getInput().toLowerCase());
+
+		switch (selectoption1) {
 		
-		
-		
-		for (Order i : orders) {
-			Order order = null;
-			while (i.getOrder_id() == order_id) {
-				order = i;
-				System.out.println(i);
-				break;
+		case "add":
+
+
+			LOGGER.info("Please enter the Order ID thay you'd like to update");
+			Long order_id1 = Long.valueOf(getInput());
+
+			for (Order i : orders) {
+				Order order = null;
+				while (i.getOrder_id() == order_id1) {
+					order = i;
+					System.out.println(i);
+					break;
+				}
 			}
+			
+			LOGGER.info("Please enter the new ITEM ID you'd like to connect to this order");
+			Long item_id1 = Long.valueOf(getInput());
+
+			for (Item i : items) {
+				if (i.getItem_id() == item_id1) {
+					item = i;
+					System.out.println(i);
+					break;
+				}
+			}
+			
+			
+			Order Order1 = orderServices.update(new Order(order_id1, item_id1));
+			LOGGER.info("Order Updated");
+			return Order1;
+
+		case "update":
+			
+	
+			LOGGER.info("Please enter the Order ID thay you'd like to update");
+			Long order_id = Long.valueOf(getInput());
+
+			for (Order i : orders) {
+				Order order = null;
+				while (i.getOrder_id() == order_id) {
+					order = i;
+					System.out.println(i);
+					break;
+				}
+			}
+
+			LOGGER.info("Please enter the new customer ID you'd like to connect to this order");
+			Long customer_id = Long.valueOf(getInput());
+			Order Order = orderServices.update(new Order(order_id, customer_id));
+			LOGGER.info("Order Updated");
+			return Order;
+
+		default:
+			LOGGER.info("enter valid info");
+			break;
 		}
-		
-		
-		LOGGER.info("Please enter the new customer ID you'd like to connect to this order");
-		Long customer_id = Long.valueOf(getInput());
-		Order Order = orderServices.update(new Order(order_id, customer_id));
-		LOGGER.info("Order Updated");
-		return Order;
+
+		return null;
+
+
 	}
 
 	/**
@@ -151,17 +189,17 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public void delete() {
-		
+
 		LOGGER.info("Would you like to delete and ITEM from an order or Delete a entier ORDER");
 		String select = String.valueOf(getInput().toLowerCase());
-		
+
 		switch (select) {
 		case "item":
-			
+
 			LOGGER.info("Please enter the id of the Order you would like to delete an item from");
 			Long Order_id = Long.valueOf(getInput());
 			List<Order> orders = orderServices.readAll();
-			
+
 			for (Order i : orders) {
 				Order order = null;
 				while (i.getOrder_id() == Order_id) {
@@ -172,17 +210,14 @@ public class OrderController implements CrudController<Order> {
 			}
 			LOGGER.info("SELECT ITEM FROM ORDER BY CHOOSING THE CORRECT ORDERLINE_ID");
 			Long orderline_id = Long.valueOf(getInput());
-			
-		
+
 			LOGGER.info("Item has been Deleted");
 			orderServices.delete(orderline_id);
-			
-			
-			
+
 			break;
-			
-	case "order":
-		List<Order> orders1 = orderServices.readAll();
+
+		case "order":
+			List<Order> orders1 = orderServices.readAll();
 			LOGGER.info("Please enter the id of the Order you would like to delete");
 			Long Order_id1 = Long.valueOf(getInput());
 
@@ -194,22 +229,17 @@ public class OrderController implements CrudController<Order> {
 					break;
 				}
 			}
-		
+
 			LOGGER.info("These orders have been Deleted");
 			orderServices.deleteOrder(Order_id1);
-			
-			
-			
+
 			break;
 
 		default:
-			
-			
-			
+
 			break;
 		}
-		
-		
+
 	}
 
 }

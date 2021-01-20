@@ -57,6 +57,15 @@ public class OrderDaoMysql implements Dao<Order> {
 	}
 	
 	
+
+	
+	static Order OrderFormResultSetUpdateTwo(ResultSet resultSet) throws SQLException {
+		Long order_id = resultSet.getLong("order_id");
+		Long item_id = resultSet.getLong("item_id"); 		
+		return new Order(order_id,item_id);
+	}
+	
+	
 	static Order OrderFromCreate(ResultSet resultSet) throws SQLException {
 		Long order_id = resultSet.getLong("order_id");
 		Long customer_id = resultSet.getLong("customer_id");
@@ -169,7 +178,7 @@ public class OrderDaoMysql implements Dao<Order> {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM Orders where order_id = " + order_id);) {
 			resultSet.next();
-			return OrderFromResultSet(resultSet);
+			return OrderFromCreate(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -186,6 +195,16 @@ public class OrderDaoMysql implements Dao<Order> {
 	 */
 	@Override
 	public Order update(Order Order) {
+		
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();) {
+			statement.executeUpdate("update orderline set order_id ='" + Order.getOrder_id() + "' where order_id =" + Order.getOrder_id());
+			return readOrder(Order.getOrder_id());
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update Orders set order_id ='" + Order.getOrder_id() + "', customer_id ='"
