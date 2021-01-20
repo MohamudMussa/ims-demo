@@ -13,50 +13,40 @@ public class Order {
 	private String first_name;
 	private String surname;
 	private String address;
-	private Long item_id; 
+	private Long item_id;
 
-
-	
 	public String getFirst_name() {
 		return first_name;
 	}
-
 
 	public void setFirst_name(String first_name) {
 		this.first_name = first_name;
 	}
 
-
 	public String getSurname() {
 		return surname;
 	}
-
 
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
-
 	public String getAddress() {
 		return address;
 	}
-
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-
 	public Order(Long customer_id) {
 		this.customer_id = customer_id;
 	}
-	
 
 	public Order(Long order_id, Long customer_id) {
 		this.order_id = order_id;
-		this.customer_id = customer_id; 
+		this.customer_id = customer_id;
 	}
-	
 
 	public Order(Long order_id, Long customer_id, ArrayList<Item> item_list) {
 
@@ -64,13 +54,12 @@ public class Order {
 		this.customer_id = customer_id;
 		this.item_list = item_list;
 	}
-	
-	
-	
+
 	public Order(Long orderline_id, Long order_id, Long customer_id, Integer quantity, Long item_id,
 			Integer orderline_price, String first_name, String surname, String address) {
 		super();
-		this.orderline_id = orderline_id;;
+		this.orderline_id = orderline_id;
+		;
 		this.order_id = order_id;
 		this.customer_id = customer_id;
 		this.quantity = quantity;
@@ -81,28 +70,23 @@ public class Order {
 		this.address = address;
 	}
 
-
 	public Order(Long order_id, Long customer_id, Long item_id) {
 		this.order_id = order_id;
 		this.customer_id = customer_id;
 		this.item_id = item_id;
 	}
 
-
 	public Item getItem() {
 		return item;
 	}
-
 
 	public void setItem(Item item) {
 		this.item = item;
 	}
 
-
 	public void addItemsInOrder(Item item) {
 		this.item_list.add(item);
 	}
-	
 
 	public Long getOrder_id() {
 		return order_id;
@@ -136,10 +120,6 @@ public class Order {
 		this.quantity = quantity;
 	}
 
-	
-
-
-
 	@Override
 	public String toString() {
 		return "Order [orderline_id=" + orderline_id + ", order_id=" + order_id + ", customer_id=" + customer_id
@@ -147,7 +127,6 @@ public class Order {
 				+ ", first_name=" + first_name + ", surname=" + surname + ", address=" + address + ", item_id="
 				+ item_id + "]";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -180,36 +159,28 @@ public class Order {
 		return true;
 	}
 
-
 	public Integer getOrderline_price() {
 		return orderline_price;
 	}
-
 
 	public void setOrderline_price(Integer orderline_price) {
 		this.orderline_price = orderline_price;
 	}
 
-
 	public Long getItem_id() {
 		return item_id;
 	}
-
 
 	public void setItem_id(Long item_id) {
 		this.item_id = item_id;
 	}
 
-
 	public Long getOrderline_id() {
 		return orderline_id;
 	}
 
-
 	public void setOrderline_id(Long orderline_id) {
 		this.orderline_id = orderline_id;
 	}
-
-
 
 }
