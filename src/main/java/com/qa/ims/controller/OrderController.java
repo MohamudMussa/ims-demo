@@ -37,11 +37,38 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public List<Order> readAll() {
-		List<Order> Orders = orderServices.readAll();
-		for (Order Order : Orders) {
-			LOGGER.info(Order.toString());
+		
+		LOGGER.info("VIEW - to view all orders");
+		LOGGER.info("CAL - to to calculate an order");
+		String read = String.valueOf(getInput().toLowerCase());
+
+		switch (read) {
+		case "cal":
+			Long order_id = Long.valueOf(getInput());
+			List<Order> Orders = orderServices.readAll();
+			for (Order Order : Orders) {
+				if (Order.getOrder_id() == order_id) {
+					Orders = i;
+					LOGGER.info("You have added" + " " + quantity + " " + "of the below Item");
+					System.out.println(i);
+					break;
+				}
+				LOGGER.info(Order.toString());
+			}
+			return Orders;
+			
+
+		default:
+			
+			List<Order> Orders1 = orderServices.readAll();
+			for (Order Order : Orders1) {
+				LOGGER.info(Order.toString());
+			}
+			return Orders1;
+		
 		}
-		return Orders;
+		
+	
 	}
 
 	/**
