@@ -27,6 +27,13 @@ public class Order {
 	public Order() {
 		
 	}
+	
+	public Order(Integer quantity, Integer orderline_price) {
+		this.quantity = quantity;
+		this.orderline_price = orderline_price;
+	}
+	
+	
 
 	public String getFirst_name() {
 		return first_name;
