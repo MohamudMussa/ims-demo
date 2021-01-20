@@ -37,38 +37,11 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public List<Order> readAll() {
-		
-		LOGGER.info("VIEW - to view all orders");
-		LOGGER.info("CAL - to to calculate an order");
-		String read = String.valueOf(getInput().toLowerCase());
-
-		switch (read) {
-		case "cal":
-			Long order_id = Long.valueOf(getInput());
-			List<Order> Orders = orderServices.readAll();
-			for (Order Order : Orders) {
-				if (Order.getOrder_id() == order_id) {
-					Orders = i;
-					LOGGER.info("You have added" + " " + quantity + " " + "of the below Item");
-					System.out.println(i);
-					break;
-				}
-				LOGGER.info(Order.toString());
-			}
-			return Orders;
-			
-
-		default:
-			
-			List<Order> Orders1 = orderServices.readAll();
-			for (Order Order : Orders1) {
-				LOGGER.info(Order.toString());
-			}
-			return Orders1;
-		
+		List<Order> Orders = orderServices.readAll();
+		for (Order Order : Orders) {
+			LOGGER.info(Order.toString());
 		}
-		
-	
+		return Orders;
 	}
 
 	/**
@@ -85,16 +58,14 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please make a not of it");
 		List<Item> items = itemServices.readAll();
 		Item item = null;
+		LOGGER.info("Would you like to add an item to this order");
 		Boolean loopy = false;
 		String tnp = "";
 
 		while (!loopy) {
-			LOGGER.info("please re enter your order_id");
-			Long order_id = Long.valueOf(getInput());
-			
 			LOGGER.info("Please enter ITEM ID");
 			Long item_id = Long.valueOf(getInput());
-			
+			Long order_id = Long.valueOf(getInput());
 			LOGGER.info("Please enter the Quantity of the ITEM that you'd like");
 			Integer quantity = Integer.valueOf(getInput());
 
