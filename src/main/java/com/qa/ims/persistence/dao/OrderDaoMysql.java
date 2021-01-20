@@ -195,18 +195,11 @@ public class OrderDaoMysql implements Dao<Order> {
 	 */
 	@Override
 	public Order update(Order Order) {
+
 		
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update orderline set order_id ='" + Order.getOrder_id() + "' where order_id =" + Order.getOrder_id());
-			return readOrder(Order.getOrder_id());
-		} catch (Exception e) {
-			LOGGER.debug(e.getStackTrace());
-			LOGGER.error(e.getMessage());
-		}
-		
-		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update Orders set order_id ='" + Order.getOrder_id() + "', customer_id ='"
 					+ Order.getCustomer_id() + "' where order_id =" + Order.getOrder_id());
 			return readOrder(Order.getOrder_id());
