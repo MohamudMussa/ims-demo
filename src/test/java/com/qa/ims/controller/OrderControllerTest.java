@@ -1,87 +1,91 @@
-//package com.qa.ims.controller;
-//
-//import static org.junit.Assert.assertEquals;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.Mockito;
-//import org.mockito.Spy;
-//import org.mockito.junit.MockitoJUnitRunner;
-//
-//import com.qa.ims.persistence.domain.Customer;
-//import com.qa.ims.services.CustomerServices;
-//
-//@RunWith(MockitoJUnitRunner.class)
-//public class OrderControllerTest {
-//	
-//	/**
-//	 *  The thing I want to fake functionlity for
-//	 */
-//	@Mock
-//	private CustomerServices customerServices;
-//	
-//	/**
-//	 * Spy is used because i want to mock some methods inside the item I'm testing
-//	 * InjectMocks uses dependency injection to insert the mock into the customer controller
-//	 */
-//	@Spy
-//	@InjectMocks
-//	private OrderController OrderController;
-//
-//	@Test
-//	public void readAllTest() {
-//		OrderController OrderController = new OrderController(customerServices);
-//		List<Customer> customers = new ArrayList<>();
-//		customers.add(new Customer("Chris", "P", "A"));
-//		customers.add(new Customer("Rhys", "T", "A"));
-//		customers.add(new Customer("Nic", "J", "A"));
-//		Mockito.when(customerServices.readAll()).thenReturn(customers);
-//		assertEquals(customers, OrderController.readAll());
-//	}
-//
-//	@Test
-//	public void createTest() {
-//		String id = "1";
-//		String firstName = "Chris";
-//		String surname = "Perrins";
-//		String address = "address";
-//		Mockito.doReturn(id, firstName, surname, address).when(OrderController).getInput();
-//		Customer customer = new Customer(firstName, surname, address);
-//		Customer savedCustomer = new Customer(1L, "Chris", "Perrins", "address");
-//		Mockito.when(customerServices.create(customer)).thenReturn(savedCustomer);
-//		assertEquals(savedCustomer, OrderController.create());
-//	}
-//
-//	/**
-//	 * 
-//	 */
-//	@Test
-//	public void updateTest() {
-//		String id = "1";
-//		String firstName = "Rhys";
-//		String surname = "Thompson";
-//		String address = "address";
-//		Mockito.doReturn(id, firstName, surname, address).when(OrderController).getInput();
-//		Customer customer = new Customer(1L, firstName, surname, address);
-//		Mockito.when(customerServices.update(customer)).thenReturn(customer);
-//		assertEquals(customer, OrderController.update());
-//	}
-//	
-//
-//	/**
-//	 * Delete doesn't return anything, so we can just verify that it calls the delete method
-//	 */
-//	@Test
-//	public void deleteTest() {
-//		String id = "1";
-//		Mockito.doReturn(id).when(OrderController).getInput();
-//		OrderController.delete();
-//		Mockito.verify(customerServices, Mockito.times(1)).delete(1L);
-//	}
-//	
-//}
+package com.qa.ims.controller;
+
+import static org.junit.Assert.assertEquals;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.services.OrderServices;
+
+@RunWith(MockitoJUnitRunner.class)
+public class OrderControllerTest {
+
+	
+	/**
+	 *  The thing I want to fake functionlity for
+	 */
+	@Mock
+	private OrderServices OrderServices;
+	
+	/**
+	 * Spy is used because i want to mock some methods inside the Order I'm testing
+	 * InjectMocks uses dependency injection to insert the mock into the Order controller
+	 */
+	@Spy
+	@InjectMocks
+	private OrderController OrderController;
+
+	@Test
+	public void readAllTest() {
+		OrderController OrderController = new OrderController(OrderServices, null);
+		List<Order> Orders = new ArrayList<>();
+		Orders.add(new Order(1L, 2L, 1, 12));
+		Orders.add(new Order(1L, 2L, 1, 12));
+		Orders.add(new Order(1L, 2L, 1, 12));
+		Mockito.when(OrderServices.readAll()).thenReturn(Orders);
+		assertEquals(Orders, OrderController.readAll());
+	}
+
+	@Test
+	public void createTest() {
+		
+		String order_id = "1";
+		String quantity = "11";
+		String orderline_price = "11";
+		String item_id = "1";
+		
+		Mockito.doReturn(order_id, item_id, quantity, orderline_price).when(OrderController).getInput();
+		Order Order = new Order(1L, 2L, 1, 12);
+		Order savedOrder = new Order(1L, 2L, 1, 12);
+		Mockito.when(OrderServices.create(Order)).thenReturn(savedOrder);
+		assertEquals(savedOrder, OrderController.create());
+	}
+
+	/**
+	 * 
+	 */
+	@Test
+	public void updateTest() {
+		String order_id = "1";
+		String quantity = "11";
+		String orderline_price = "11";
+		String item_id = "1";
+		Mockito.doReturn(order_id, item_id, quantity, orderline_price).when(OrderController).getInput();
+		Order Order = new Order(1L, 2L, 1, 12);
+		Mockito.when(OrderServices.update(Order)).thenReturn(Order);
+		assertEquals(Order, OrderController.update());
+	}
+	
+
+	/**
+	 * Delete doesn't return anything, so we can just verify that it calls the delete method
+	 */
+	@Test
+	public void deleteTest() {
+		String item_id = "1";
+		Mockito.doReturn(item_id).when(OrderController).getInput();
+		OrderController.delete();
+		Mockito.verify(OrderServices, Mockito.times(1)).delete(1L);
+	}
+	
+}
