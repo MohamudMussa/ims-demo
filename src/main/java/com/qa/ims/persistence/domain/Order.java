@@ -79,7 +79,6 @@ public class Order {
 			Integer orderline_price, String first_name, String surname, String address) {
 		super();
 		this.orderline_id = orderline_id;
-		;
 		this.order_id = order_id;
 		this.customer_id = customer_id;
 		this.quantity = quantity;
