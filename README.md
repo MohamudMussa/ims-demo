@@ -11,8 +11,17 @@ This is an  **Inventory Management System Application** that was build using Jav
 ## Table of contents
 * [Prerequisite](#Prerequisite)
 * [Installing](#Installing)
-* [Running the tests](#Running_the_tests)
-* [Integration Tests ](#Integration_Tests)
+* [Testing](#Testing)
+* [Creating_JAR_file:](#Creating a JAR file using Maven:)
+* [Deployment](#Deployment)
+* [Built_With](#Built With)
+* [Versioning](#Versioning)
+* [Authors](#Authors)
+* [License](#License)
+* [Acknowledgments](#Acknowledgments)
+
+
+
 
 
 ## Getting Started
