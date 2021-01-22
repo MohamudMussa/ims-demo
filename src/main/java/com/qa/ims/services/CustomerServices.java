@@ -54,6 +54,12 @@ public class CustomerServices implements CrudServices<Customer> {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Customer calculateOrder(Customer t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

@@ -28,10 +28,6 @@ public class OrderController implements CrudController<Order> {
 		this.itemServices = itemServices;
 	}
 
-	String getInput() {
-		return Utils.getInput();
-	}
-
 	/**
 	 * Reads all Orders to the logger
 	 */
@@ -50,9 +46,6 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
-		
-		
-		
 
 		LOGGER.info("Please enter the Customer ID");
 		Long customer_id = Long.valueOf(getInput());
@@ -86,7 +79,7 @@ public class OrderController implements CrudController<Order> {
 			}
 			order.setOrder_id(order_id);
 			order.setItem(item);
-			int final_price = (int) (item.getItem_price() * quantity);
+			Double final_price = (Double) (item.getItem_price() * quantity);
 			order.setQuantity(quantity);
 			order.setOrderline_price(final_price);
 			order = orderServices.additems(order);
@@ -103,19 +96,19 @@ public class OrderController implements CrudController<Order> {
 
 	}
 
-	// DO A COUNT ON ITEM ID WHERE CURRENT GET_ORDER_ID IS = THIS IS WHERE WE STORE
-	// THE QUANTITY
+	String getInput() {
+		// TODO Auto-generated method stub
+		return Utils.getInput();
+	}
 
 	/**
 	 * Updates an existing Order by taking in user input
 	 */
 	@Override
 	public Order update() {
-
+		LOGGER.info("CALCULATE - to calculate  an exisiting order");
 		LOGGER.info("ADD - to add an ITEM to an exisiting order");
 		LOGGER.info("UPDATE - to assign another customer to an exisiting order ");
-
-
 
 		String selectoption1 = String.valueOf(getInput().toLowerCase());
 
@@ -151,14 +144,13 @@ public class OrderController implements CrudController<Order> {
 			order.setItem_id(item_id);
 			order.setItem(item);
 
-			int final_price = (int) (item.getItem_price() * quantity);
-			
+			Double final_price = (Double) (item.getItem_price() * quantity);
+
 			order.setQuantity(quantity);
 			order.setOrderline_price(final_price);
-			
+
 			order = orderServices.additems(order);
 			LOGGER.info("order has been updated");
-
 
 			return order;
 
@@ -166,7 +158,7 @@ public class OrderController implements CrudController<Order> {
 
 			LOGGER.info("Please enter the Order ID thay you'd like to update");
 			Long order_id = Long.valueOf(getInput());
-			
+
 			List<Order> orders = orderServices.readAll();
 			for (Order i : orders) {
 				Order order1 = null;
@@ -182,6 +174,31 @@ public class OrderController implements CrudController<Order> {
 			Order Order = orderServices.update(new Order(order_id, customer_id));
 			LOGGER.info("Order Updated");
 			return Order;
+
+		/**
+		 * Calculating an order
+		 */
+		case "calculate":
+			List<Order> orders11 = orderServices.readAll();
+			LOGGER.info("Please enter the id of the Order you would like to delete");
+			Long Order_id11 = Long.valueOf(getInput());
+			int sum = 0;
+			for (Order i : orders11) {
+				Order order1 = null;
+				while (i.getOrder_id() == Order_id11) {
+					order1 = i;
+					System.out.println(i);
+					double cost = order1.getOrderline_price() + sum;
+					System.out.println(cost);
+					break;
+				}
+			}
+
+			orderServices.calculateOrder(Order_id11);
+
+			LOGGER.info("BELOW IS THE TOTAL PRICE FOR ALL THESE ORDERS");
+
+			break;
 
 		default:
 			LOGGER.info("enter valid info");
@@ -240,29 +257,6 @@ public class OrderController implements CrudController<Order> {
 
 			LOGGER.info("These orders have been Deleted");
 			orderServices.deleteOrder(Order_id1);
-
-			break;
-			
-		case "cal":
-			List<Order> orders11 = orderServices.readAll();
-			LOGGER.info("Please enter the id of the Order you would like to delete");
-			Long Order_id11 = Long.valueOf(getInput());
-			int sum = 0;
-			for (Order i : orders11) {
-				Order order = null;
-				while (i.getOrder_id() == Order_id11) {
-					order = i;
-					System.out.println(i);
-					Integer cost = order.getOrderline_price() + sum;
-					
-					break;
-				}
-			}
-			
-			LOGGER.info("BELOW IS THE TOTAL PRICE FOR ALL THESE ORDERS");
-			orderServices.calculateOrder(Order_id11);
-
-
 
 			break;
 

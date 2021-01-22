@@ -18,8 +18,8 @@ public class OrderTest {
 	public void setUp() {
 
 		
-		order = new Order(1L, 2L, 8, 8);
-		other = new Order(1L, 2L, 8, 8);
+		order = new Order(1L, 2L, 8, 12.0);
+		other = new Order(1L, 2L, 8, 12.0);
 		
 
 	}
@@ -31,7 +31,12 @@ public class OrderTest {
 		assertNotNull(order.getQuantity());
 		assertNotNull(order.getOrderline_price());
 
+
+		
+
 		order.setOrder_id(null);
+		assertNull(order.getOrder_id());
+		order.setOrderline_id(null);
 		assertNull(order.getOrder_id());
 		order.setItem(null);
 		assertNull(order.getItem());
@@ -39,6 +44,10 @@ public class OrderTest {
 		assertNull(order.getQuantity());
 		order.setItem_id(null);
 		assertNull(order.getItem_id());
+		order.setAddress(null);
+		assertNull(order.getAddress());
+
+
 
 	}
 
@@ -56,7 +65,7 @@ public class OrderTest {
 	public void createOrderWithId() {
 		assertEquals(1L, order.getOrder_id(), 0);
 		assertEquals(8.0, order.getQuantity(), 0);
-		assertEquals(8.0, order.getOrderline_price(), 0);
+		assertEquals(8.0, order.getOrderline_price(), 12.0);
 	}
 
 	@Test
@@ -72,12 +81,12 @@ public class OrderTest {
 	@Test
 	public void customerNameNullButOtherNameNotNull() {
 		order.setOrderline_price(null);
-		assertTrue(order.equals(other));
+		assertFalse(order.equals(other));
 	}
 
 	@Test
 	public void orderline_PriceNamesNotEqual() {
-		other.setOrderline_price(1);
+		other.setOrderline_price(12.0);
 		assertTrue(order.equals(other));
 	}
 
@@ -93,6 +102,13 @@ public class OrderTest {
 		order.setOrder_id(null);
 		assertFalse(order.equals(other));
 	}
+	
+	@Test
+	public void nullorderlineId() {
+		order.setOrderline_id(null);
+		assertFalse(order.equals(other));
+	}
+
 
 	@Test
 	public void nullIdOnBoth() {
@@ -110,7 +126,7 @@ public class OrderTest {
 	@Test
 	public void nullQuantity() {
 		order.setOrderline_price(null);
-		assertTrue(order.equals(other));
+		assertFalse(order.equals(other));
 	}
 
 	@Test
@@ -122,13 +138,13 @@ public class OrderTest {
 
 	@Test
 	public void otherOrderline_priceDifferent() {
-		other.setOrderline_price(8);
+		other.setOrderline_price(12.0);
 		assertTrue(order.equals(other));
 	}
 
 	@Test
 	public void constructorWithoutId() {
-		Order order = new Order(8, 8);
+		Order order = new Order(8, 12.0);
 		assertNull(order.getOrder_id());
 		assertNotNull(order.getOrderline_price());
 		assertNotNull(order.getQuantity());
@@ -150,7 +166,7 @@ public class OrderTest {
 
 	@Test
 	public void toStringTest() {
-		String toString = "Order [orderline_id=null, order_id=1, customer_id=null, item_id=2, quantity=8, orderline_price=8, first_name=null, surname=null, address=null, item_id=2]";
+		String toString = "Order [orderline_id=null, order_id=1, customer_id=null, item_id=2, quantity=8, orderline_price=12.0, first_name=null, surname=null, address=null, item_id=2]";
 		assertEquals(toString, order.toString());
 	}
 }

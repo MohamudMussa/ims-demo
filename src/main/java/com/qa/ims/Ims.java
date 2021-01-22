@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -20,8 +19,6 @@ import com.qa.ims.persistence.dao.CustomerDaoMysql;
 import com.qa.ims.persistence.dao.ItemDaoMysql;
 import com.qa.ims.persistence.dao.OrderDaoMysql;
 import com.qa.ims.persistence.domain.Domain;
-import com.qa.ims.persistence.domain.Order;
-import com.qa.ims.services.CrudServices;
 import com.qa.ims.services.CustomerServices;
 import com.qa.ims.services.ItemServices;
 import com.qa.ims.services.OrderServices;

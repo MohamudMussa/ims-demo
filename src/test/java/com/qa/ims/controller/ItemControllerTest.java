@@ -19,14 +19,13 @@ import com.qa.ims.services.ItemServices;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ItemControllerTest {
-	//big decimal price 
+
 	Double item_price = 80.00;
 
 	
-	
-	// GET NUMBER IS MEANT TO RETURN BIG DECIMAL 
+
 	/**
-	 *  The thing I want to fake functionlity for
+	 *  The thing I want to fake functionality for
 	 */
 	@Mock
 	private ItemServices ItemServices;

@@ -55,4 +55,10 @@ public class ItemServices implements CrudServices<Item> {
 		
 	}
 
+	@Override
+	public Item calculateOrder(Item t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

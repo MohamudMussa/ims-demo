@@ -14,6 +14,9 @@ public interface CrudServices<T> {
     
     T updateOrderline(T t);
     
+    T calculateOrder(T t);
+
+    
 
  
     void delete(Long id);

@@ -1,30 +1,28 @@
-Coverage: 58%
+Coverage: 60%
 # Inventory Management Aystem Application by Mohamud Mussa
 
 
 This is an  **Inventory Management Aystem Application** that was build using Java and can be interact with via a Command-Line Interface. The inventory management system connects to a database and allows the end user to easily add, update and create an **Order**.  The end user can use the ADD, UPDATE and CREATE functionality for  **Customers** and **Items** as well. This application also allows the end user to calculate the cost of an order. 
 
 ## Table of contents
-* [Technologies](#Technologies)
 * [Prerequisite](#Prerequisite)
 * [Installing](#Installing)
 * [Running the tests](#Running_the_tests)
 * [Integration Tests ](#Integration_Tests)
 
 
-## Technologies
-
-* Java 14.1
-* mySQL
-
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
 
 ### Prerequisite
 
+* [Java 14.1](https://www.eclipse.org/downloads/)
+* [Git](https://git-scm.com/downloads)
 * [Eclipse](https://www.eclipse.org/downloads/)
 * [MySQL](https://www.mysql.com/downloads/)
+* [Maven](http://maven.apache.org/download.cgi)
 
 
 
@@ -52,7 +50,10 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+All testing of this program was done using unit tests. 
+JUnit and Mockito were used to write the tests.
+
+
 
 ### Unit Tests 
 
@@ -87,11 +88,14 @@ Add additional notes about how to deploy this on a live system
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning.
+[Maven Versioning](http://maven.apache.org/download.cgi)  incremental,Minor & Major was used to update the version.
+
 
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+
+* **Mohamud Mussa* - *The rest of the work* - [MohamudMussa](https://github.com/MohamudMussa)
 
 ## License
 
@@ -101,5 +105,5 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thank you to Aswene and Vinesh for teaching me Java, SQL etc.
+* Thank you to Nick, Aswene and Vinesh 
 

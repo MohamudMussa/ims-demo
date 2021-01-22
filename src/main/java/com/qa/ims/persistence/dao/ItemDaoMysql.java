@@ -61,7 +61,7 @@ public class ItemDaoMysql implements Dao<Item> {
 		return new ArrayList<>();
 	}
 
-	// MM ALTERD THIS TO FIX THE ISSUE OF NOT BEING ABLE TO CREATE A Item
+
 	public Item readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
@@ -159,6 +159,12 @@ public class ItemDaoMysql implements Dao<Item> {
 
 	@Override
 	public Item updateOrderline(Item t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Item calculateOrder(Long order_id1) {
 		// TODO Auto-generated method stub
 		return null;
 	}
