@@ -3,10 +3,10 @@ Coverage: 60%
 ![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2060.PNG)
 
 
-# Inventory Management Aystem Application by Mohamud Mussa
+# Inventory Management System Application by Mohamud Mussa
 
 
-This is an  **Inventory Management Aystem Application** that was build using Java and can be interact with via a Command-Line Interface. The inventory management system connects to a database and allows the end user to easily add, update and create an **Order**.  The end user can use the ADD, UPDATE and CREATE functionality for  **Customers** and **Items** as well. This application also allows the end user to calculate the cost of an order. 
+This is an  **Inventory Management System Application** that was build using Java and can be interact with via a Command-Line Interface. The inventory management system connects to a database and allows the end user to easily add, update and create an **Order**.  The end user can use the ADD, UPDATE and CREATE functionality for  **Customers** and **Items** as well. This application also allows the end user to calculate the cost of an order. 
 
 ## Table of contents
 * [Prerequisite](#Prerequisite)
@@ -27,6 +27,7 @@ These instructions will get you a copy of the project up and running on your loc
 * [Eclipse](https://www.eclipse.org/downloads/)
 * [MySQL](https://www.mysql.com/downloads/)
 * [Maven](http://maven.apache.org/download.cgi)
+* [GCP](http://maven.apache.org/download.cgi)
 
 
 
@@ -34,7 +35,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. You will need to clone down the repo, here is a link to the repo [GitHub][https://github.com/MohamudMussa/ims-demo.git]
 * To do this, Git Bash in the desired folder you'd like to clone to.
-* Once Git opens, you will need to initalise git, do this with the following command;
+* Once Git opens, you will need to initialise git, do this with the following command;
 ```
 Git init
 ```
@@ -44,8 +45,8 @@ Git clone
 ```
 and copy and paste the link you wanted to clone, here it is again - [GitHub][https://github.com/MohamudMussa/ims-demo.git]
 
-3. Now its time to open the programme, I used *Eclipse* but you can use anything that allows Java to run. 
-4. *OR EVEN* you'd be able to 
+3. Now its time to open the program, I used *Eclipse* but you can use anything that allows Java to run. 
+4. You are aslo able to do the follow - Left click in the correct folder containing the project > then select
 
 ```
 GIT BASH 	
@@ -53,7 +54,7 @@ GIT BASH
 
 into the *ims-demo/target* and then type the following **"java -jar mussa-ims-1.0.1-jar-with-dependencies.jar**
 
-5. You can now use the programme via the command line.
+5. You can now use the program via the command line.
 
 ## Testing
 
@@ -76,10 +77,12 @@ mvn clean package
 ## Deployment
 
 To deploy this software to a cloud database such as Google Cloud Platform (GCP) you will need to do the following;
-*Open the project
-**In the main folder 'src/main/java' Open > com.qa.ims.utils
-***and then click on DBUtils.java
-****Change the DB_URL from 'localhost' to the desired IP address
+
+**Open the project**
+
+1. In the main folder 'src/main/java' Open > Ims.java
+2. Scroll down until you see init("jdbc:mysql://
+3. change the localhost to your desired IP address
 
 ## Built With
 
@@ -87,7 +90,7 @@ To deploy this software to a cloud database such as Google Cloud Platform (GCP) 
 
 ## Versioning
 
-[Maven Versioning](http://maven.apache.org/download.cgi)  incremental,Minor & Major was used to update the version.
+[Maven Versioning](http://maven.apache.org/download.cgi)  incremental, Minor & Major was used to update the version.
 
 
 ## Authors
@@ -105,4 +108,5 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Thank you to Nick, Aswene and Vinesh 
+
 
