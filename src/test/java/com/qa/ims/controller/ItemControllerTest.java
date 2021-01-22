@@ -48,7 +48,9 @@ public class ItemControllerTest {
 		Mockito.when(ItemServices.readAll()).thenReturn(Items);
 		assertEquals(Items, ItemController.readAll());
 	}
-
+	/**
+	 * Create Test
+	 */
 	@Test
 	public void createTest() {
 		String item_id = "1";
@@ -62,7 +64,7 @@ public class ItemControllerTest {
 	}
 
 	/**
-	 * 
+	 * Update Test
 	 */
 	@Test
 	public void updateTest() {

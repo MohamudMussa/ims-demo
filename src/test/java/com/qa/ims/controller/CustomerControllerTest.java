@@ -20,7 +20,7 @@ import com.qa.ims.services.CustomerServices;
 public class CustomerControllerTest {
 	
 	/**
-	 *  The thing I want to fake functionlity for
+	 *  The thing I want to fake functionality for
 	 */
 	@Mock
 	private CustomerServices customerServices;
@@ -33,6 +33,9 @@ public class CustomerControllerTest {
 	@InjectMocks
 	private CustomerController customerController;
 
+	/**
+	 * Read Latest
+	 */
 	@Test
 	public void readAllTest() {
 		CustomerController customerController = new CustomerController(customerServices);
@@ -43,6 +46,10 @@ public class CustomerControllerTest {
 		Mockito.when(customerServices.readAll()).thenReturn(customers);
 		assertEquals(customers, customerController.readAll());
 	}
+	
+	/**
+	 * Create Test
+	 */
 
 	@Test
 	public void createTest() {
@@ -58,7 +65,7 @@ public class CustomerControllerTest {
 	}
 
 	/**
-	 * 
+	 * UpdateTest
 	 */
 	@Test
 	public void updateTest() {
