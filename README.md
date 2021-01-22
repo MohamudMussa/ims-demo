@@ -1,4 +1,7 @@
 Coverage: 60%
+
+![Coverage](C:\Users\Asus\Documents\GitHub\ims-demo\documentation)
+
 # Inventory Management Aystem Application by Mohamud Mussa
 
 
@@ -95,7 +98,7 @@ Add additional notes about how to deploy this on a live system
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
 
-* **Mohamud Mussa* - *The rest of the work* - [MohamudMussa](https://github.com/MohamudMussa)
+* **Mohamud Mussa** - *The rest of the work* - [MohamudMussa](https://github.com/MohamudMussa)
 
 ## License
 
