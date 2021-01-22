@@ -11,6 +11,10 @@ public interface Dao<T> {
     T create(T t);
      
     T update(T t);
+    
+    T updateOrderline(T t);
+    
+    T calculateOrder(Long order_id1);
      
     void delete(long id);
 

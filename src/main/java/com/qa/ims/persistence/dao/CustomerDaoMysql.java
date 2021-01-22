@@ -62,7 +62,6 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		return new ArrayList<>();
 	}
 
-	// ALTERD THIS TO FIX THE ISSUE OF NOT BEING ABLE TO CREATE A CUSTOMER
 	public Customer readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
@@ -156,6 +155,18 @@ public class CustomerDaoMysql implements Dao<Customer> {
 	public void deleteOrder(long order_id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Customer updateOrderline(Customer t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer calculateOrder(Long order_id1) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

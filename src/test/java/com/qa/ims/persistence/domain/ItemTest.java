@@ -111,14 +111,14 @@ public class ItemTest {
 	}
 	
 	@Test
-	public void nullSurnameOnBoth() {
+	public void nullItemPriceOnBoth() {
 		Item.setItem_price(null);
 		other.setItem_price(null);
 		assertTrue(Item.equals(other));
 	}
 	
 	@Test
-	public void otherSurnameDifferent() {
+	public void otherItemPriceDifferent() {
 		other.setItem_price(item_price);
 		assertTrue(Item.equals(other));
 	}

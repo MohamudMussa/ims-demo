@@ -41,4 +41,24 @@ public class ItemServices implements CrudServices<Item> {
 		
 	}
 
+	@Override
+	public Item updateOrderline(Item t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void calculateOrder(Long order_id1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Item calculateOrder(Item t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -105,6 +105,19 @@ public class CustomerTest {
 		customer.setSurname(null);
 		assertFalse(customer.equals(other));
 	}
+	
+	@Test
+	public void nullAddress() {
+		customer.setAddress(null);
+		assertFalse(customer.equals(other));
+	}
+	
+	@Test
+	public void nullAddressOnBoth() {
+		customer.setAddress(null);
+		other.setAddress(null);
+		assertTrue(customer.equals(other));
+	}
 
 	@Test
 	public void nullSurnameOnBoth() {
@@ -118,6 +131,13 @@ public class CustomerTest {
 		other.setSurname("thompson");
 		assertFalse(customer.equals(other));
 	}
+	
+	@Test
+	public void addressDifferent() {
+		other.setAddress("addy");
+		assertFalse(customer.equals(other));
+	}
+
 
 	@Test
 	public void constructorWithoutId() {
