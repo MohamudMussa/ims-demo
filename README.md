@@ -52,7 +52,7 @@ Git init
 ```
 Git clone
 ```
-and copy and paste the link you wanted to clone, here it is again - [GitHub][https://github.com/MohamudMussa/ims-demo.git]
+and copy and paste the link you wanted to clone, here it is again - [GitHub](https://github.com/MohamudMussa/ims-demo.git)
 
 3. Now its time to open the program, I used *Eclipse* but you can use anything that allows Java to run. 
 4. You are aslo able to do the follow - Left click in the correct folder containing the project > then select
