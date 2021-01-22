@@ -115,6 +115,10 @@ public class OrderController implements CrudController<Order> {
 		switch (selectoption1) {
 
 		case "add":
+			
+			/**
+			 * Adds an item to an order
+			 */
 
 			Order order = new Order();
 			LOGGER.info("Please enter the Order ID thay you'd like to update");
@@ -155,6 +159,10 @@ public class OrderController implements CrudController<Order> {
 			return order;
 
 		case "update":
+			
+			/**
+			 * Updates an Order
+			 */
 
 			LOGGER.info("Please enter the Order ID thay you'd like to update");
 			Long order_id = Long.valueOf(getInput());

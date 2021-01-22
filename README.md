@@ -1,6 +1,6 @@
-Coverage: 60%
+Coverage: 61%
 
-![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2060.PNG)
+![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2061.PNG)
 	
 
 # Inventory Management System Application by Mohamud Mussa
@@ -36,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 * [Eclipse](https://www.eclipse.org/downloads/)
 * [MySQL](https://www.mysql.com/downloads/)
 * [Maven](http://maven.apache.org/download.cgi)
-* [GCP](http://maven.apache.org/download.cgi)
+* [GCP](https://console.cloud.google.com/)
 
 
 

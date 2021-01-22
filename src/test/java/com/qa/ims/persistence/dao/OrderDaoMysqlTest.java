@@ -41,6 +41,10 @@ public class OrderDaoMysqlTest {
 		}
 	}
 
+	
+	/**
+	 * createTest
+	 */
 	@Test
 	public void createTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -54,6 +58,10 @@ public class OrderDaoMysqlTest {
 		assertEquals(savedOrder, order);
 	}
 
+	
+	/**
+	 * updateTest
+	 */
 	@Test
 	public void updateTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(username, password);
@@ -65,7 +73,11 @@ public class OrderDaoMysqlTest {
 		order = orderDaoMysql.update(order);
 		assertNotEquals(savedOrder, order);
 	}
-
+	
+	
+	/**
+	 * readTest
+	 */
 	@Test
 	public void readTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -78,7 +90,11 @@ public class OrderDaoMysqlTest {
 		}
 		assertEquals(orders, orderDaoMysql.readAll());
 	}
-
+	
+	
+	/**
+	 * readLatestTest
+	 */
 	@Test
 	public void readLatestTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -93,6 +109,9 @@ public class OrderDaoMysqlTest {
 		assertEquals(OrderMade, orderDaoMysql.readLatest());
 	}
 
+	/**
+	 * deleteTest
+	 */
 	@Test
 	public void deleteTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -106,6 +125,10 @@ public class OrderDaoMysqlTest {
 
 	}
 	
+	
+	/**
+	 * non functioning addtoOrderlineTest
+	 */
 	@Test
 	public void addtoOrderlineTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -119,7 +142,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
-	
+	/**
+	 * non functioning addToOrderTest - will continue to build this project
+	 */
 	@Test
 	public void addToOrderTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -133,7 +158,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
-	
+	/**
+	 * non functioning calculateOrderTest - will continue to build this project
+	 */
 	@Test
 	public void calculateOrderTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -147,6 +174,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
+	/**
+	 * non functioning deleteOrderlineTest - will continue to build this project
+	 */
 	@Test
 	public void deleteOrderlineTest() {
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -160,7 +190,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
-	
+	/**
+	 * non functioning deleteOrderTest - will continue to build this project
+	 */
 	@Test
 	public void deleteOrderTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -174,7 +206,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
-	
+	/**
+	 * non functioning updateOrderlineTest - will continue to build this project
+	 */
 	@Test
 	public void updateOrderlineTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -188,6 +222,10 @@ public class OrderDaoMysqlTest {
 
 	}
 	
+	
+	/**
+	 * non functioning readLatesOrderlineTest - will continue to build this project
+	 */
 	@Test
 	public void readLatesOrderlineTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -201,6 +239,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
+	/**
+	 * non functioning addingANewOrderlineTest - will continue to build this project
+	 */
 	@Test
 	public void addingANewOrderlineTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -214,6 +255,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
+	/**
+	 * non functioning OrderFromCreateTest - will continue to build this project
+	 */
 	@Test
 	public void OrderFromCreateTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -227,7 +271,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
-	
+	/**
+	 * non functioning OrderFromResultSetTest - will continue to build this project
+	 */
 	@Test
 	public void OrderFromResultSetTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -241,7 +287,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
-	
+	/**
+	 * non functioning CalculateFormResultSetUpdateTwoTest - will continue to build this project
+	 */
 	@Test
 	public void CalculateFormResultSetUpdateTwoTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);
@@ -254,7 +302,9 @@ public class OrderDaoMysqlTest {
 
 	}
 	
-	
+	/**
+	 * non functioning OrderFormResultSetUpdateTwoTest - will continue to build this project
+	 */
 	@Test
 	public void OrderFormResultSetUpdateTwoTest() { 
 		OrderDaoMysql orderDaoMysql = new OrderDaoMysql(jdbcConnectionUrl, username, password);

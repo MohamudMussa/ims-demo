@@ -42,7 +42,6 @@ public class OrderDaoMysql implements Dao<Order> {
 		Long orderline_id = resultSet.getLong("orderline_id");
 		Long order_id = resultSet.getLong("order_id");
 		Long customer_id = resultSet.getLong("customer_id");
-		// Long orderline_id = resultSet.getLong("orderline_id");
 		Long item_id = resultSet.getLong("item_id");
 		Integer quantity = resultSet.getInt("quantity");
 		Double orderline_price = resultSet.getDouble("orderline_price");
