@@ -42,7 +42,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-1. You will need to clone down the repo, here is a link to the repo [GitHub][https://github.com/MohamudMussa/ims-demo.git]
+1. You will need to clone down the repo, here is a link to the repo [GitHub](https://github.com/MohamudMussa/ims-demo.git)
 * To do this, Git Bash in the desired folder you'd like to clone to.
 * Once Git opens, you will need to initialise git, do this with the following command;
 ```
