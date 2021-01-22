@@ -1,6 +1,6 @@
 Coverage: 61%
 
-![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2060.PNG)
+![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2061.PNG)
 	
 
 # Inventory Management System Application by Mohamud Mussa
