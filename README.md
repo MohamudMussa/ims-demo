@@ -1,6 +1,6 @@
 Coverage: 60%
 
-![Coverage](C:\Users\Asus\Documents\GitHub\ims-demo\documentation)
+![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2060.PNG)
 
 # Inventory Management Aystem Application by Mohamud Mussa
 
