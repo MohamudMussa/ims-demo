@@ -61,7 +61,11 @@ and copy and paste the link you wanted to clone, here it is again - [GitHub](htt
 GIT BASH 	
 ```
 
-into the *ims-demo/target* and then type the following **"java -jar mussa-ims-1.0.1-jar-with-dependencies.jar**
+into the *ims-demo/target* and then type the following
+
+```
+java -jar mussa-ims-1.0.1-jar-with-dependencies.jar 	
+```
 
 5. You can now use the program via the command line.
 
