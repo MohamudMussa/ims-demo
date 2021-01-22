@@ -1,12 +1,12 @@
 Coverage: 60%
 
 ![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2060.PNG)
-
+	
 
 # Inventory Management System Application by Mohamud Mussa
 
 
-This is an  **Inventory Management System Application** that was build using Java and can be interact with via a Command-Line Interface. The inventory management system connects to a database and allows the end user to easily add, update and create an **Order**.  The end user can use the ADD, UPDATE and CREATE functionality for  **Customers** and **Items** as well. This application also allows the end user to calculate the cost of an order. 
+This is an  **Inventory Management System Application** that was build using Java and can be interact with via a Command-Line Interface. The inventory management system connects to a database and allows the end user to easily add, delete, update and create an **Customers**, **Orders** and **Items** as well. This application also allows the end user to calculate the cost of an order. 
 
 ## Table of contents
 * [Prerequisite](#Prerequisite)
@@ -120,6 +120,6 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Thank you to Nick, Aswene and Vinesh 
+* Thank you to Nick, Aswene and Vinesh & QA community
 
 

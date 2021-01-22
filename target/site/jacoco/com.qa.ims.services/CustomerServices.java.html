@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomerServices.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mussa-ims</a> &gt; <a href="index.source.html" class="el_package">com.qa.ims.services</a> &gt; <span class="el_source">CustomerServices.java</span></div><h1>CustomerServices.java</h1><pre class="source lang-java linenums">package com.qa.ims.services;
+
+import java.util.List;
+
+import com.qa.ims.persistence.dao.Dao;
+import com.qa.ims.persistence.domain.Customer;
+
+public class CustomerServices implements CrudServices&lt;Customer&gt; {
+
+	private Dao&lt;Customer&gt; customerDao;
+	
+<span class="nc" id="L12">	public CustomerServices(Dao&lt;Customer&gt; customerDao) {</span>
+<span class="nc" id="L13">		this.customerDao = customerDao;</span>
+<span class="nc" id="L14">	}</span>
+	
+	public List&lt;Customer&gt; readAll() {
+<span class="nc" id="L17">		return customerDao.readAll();</span>
+	}
+
+	public Customer create(Customer customer) {
+<span class="nc" id="L21">		return customerDao.create(customer);</span>
+	}
+
+	public Customer update(Customer customer) {
+<span class="nc" id="L25">		return customerDao.update(customer);</span>
+	}
+
+	public void delete(Long customer_id) {
+<span class="nc" id="L29">		customerDao.delete(customer_id);</span>
+<span class="nc" id="L30">	}</span>
+
+	@Override
+	public Customer additems(Customer t) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L35">		return null;</span>
+	}
+
+	@Override
+	public void deleteOrder(Long order_id1) {
+		// TODO Auto-generated method stub
+		
+<span class="nc" id="L42">	}</span>
+
+	@Override
+	public Customer updateOrderline(Customer t) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L47">		return null;</span>
+	}
+
+
+
+	@Override
+	public void calculateOrder(Long order_id1) {
+		// TODO Auto-generated method stub
+		
+<span class="nc" id="L56">	}</span>
+
+	@Override
+	public Customer calculateOrder(Customer t) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L61">		return null;</span>
+	}
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OrderController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mussa-ims</a> &gt; <a href="index.source.html" class="el_package">com.qa.ims.controller</a> &gt; <span class="el_source">OrderController.java</span></div><h1>OrderController.java</h1><pre class="source lang-java linenums">package com.qa.ims.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.qa.ims.persistence.dao.OrderDaoMysql;
+import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.persistence.domain.Order;
+import com.qa.ims.services.CrudServices;
+import com.qa.ims.services.OrderServices;
+import com.qa.ims.utils.Utils;
+
+/**
+ * Takes in Order details for CRUD functionality
+ *
+ */
+public class OrderController implements CrudController&lt;Order&gt; {
+
+<span class="nc" id="L21">	public static final Logger LOGGER = Logger.getLogger(OrderController.class);</span>
+
+	private CrudServices&lt;Order&gt; orderServices;
+	private CrudServices&lt;Item&gt; itemServices;
+
+<span class="nc" id="L26">	public OrderController(CrudServices&lt;Order&gt; orderServices, CrudServices&lt;Item&gt; itemServices) {</span>
+<span class="nc" id="L27">		this.orderServices = orderServices;</span>
+<span class="nc" id="L28">		this.itemServices = itemServices;</span>
+<span class="nc" id="L29">	}</span>
+
+	/**
+	 * Reads all Orders to the logger
+	 */
+	@Override
+	public List&lt;Order&gt; readAll() {
+<span class="nc" id="L36">		List&lt;Order&gt; Orders = orderServices.readAll();</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">		for (Order Order : Orders) {</span>
+<span class="nc" id="L38">			LOGGER.info(Order.toString());</span>
+<span class="nc" id="L39">			Order.getOrder_id();</span>
+<span class="nc" id="L40">		}</span>
+<span class="nc" id="L41">		return Orders;</span>
+	}
+
+	/**
+	 * Creates a Order by taking in user input
+	 */
+	@Override
+	public Order create() {
+
+<span class="nc" id="L50">		LOGGER.info(&quot;Please enter the Customer ID&quot;);</span>
+<span class="nc" id="L51">		Long customer_id = Long.valueOf(getInput());</span>
+<span class="nc" id="L52">		Order order = new Order(customer_id);</span>
+<span class="nc" id="L53">		order = orderServices.create(order);</span>
+<span class="nc" id="L54">		LOGGER.info(&quot;This is your Order ID &quot; + &quot; &quot; + order.getOrder_id());</span>
+<span class="nc" id="L55">		LOGGER.info(&quot;Please make a note of it&quot;);</span>
+<span class="nc" id="L56">		List&lt;Item&gt; items = itemServices.readAll();</span>
+<span class="nc" id="L57">		Item item = null;</span>
+<span class="nc" id="L58">		LOGGER.info(&quot;Would you like to add an item to this order&quot;);</span>
+<span class="nc" id="L59">		Boolean loopy = false;</span>
+<span class="nc" id="L60">		String tnp = &quot;&quot;;</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">		while (!loopy) {</span>
+<span class="nc" id="L63">			LOGGER.info(&quot;Please enter your Order ID &quot;);</span>
+<span class="nc" id="L64">			Long order_id = Long.valueOf(getInput());</span>
+
+<span class="nc" id="L66">			LOGGER.info(&quot;Please enter ITEM ID you'd like to add&quot;);</span>
+<span class="nc" id="L67">			Long item_id = Long.valueOf(getInput());</span>
+
+<span class="nc" id="L69">			LOGGER.info(&quot;Please enter the Quantity of the ITEM that you'd like&quot;);</span>
+<span class="nc" id="L70">			Integer quantity = Integer.valueOf(getInput());</span>
+
+<span class="nc bnc" id="L72" title="All 2 branches missed.">			for (Item i : items) {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">				if (i.getItem_id() == item_id) {</span>
+<span class="nc" id="L74">					item = i;</span>
+<span class="nc" id="L75">					LOGGER.info(&quot;You have added&quot; + &quot; &quot; + quantity + &quot; &quot; + &quot;of the below Item&quot;);</span>
+<span class="nc" id="L76">					System.out.println(i);</span>
+<span class="nc" id="L77">					break;</span>
+				}
+<span class="nc" id="L79">			}</span>
+<span class="nc" id="L80">			order.setOrder_id(order_id);</span>
+<span class="nc" id="L81">			order.setItem(item);</span>
+<span class="nc" id="L82">			Double final_price = (Double) (item.getItem_price() * quantity);</span>
+<span class="nc" id="L83">			order.setQuantity(quantity);</span>
+<span class="nc" id="L84">			order.setOrderline_price(final_price);</span>
+<span class="nc" id="L85">			order = orderServices.additems(order);</span>
+<span class="nc" id="L86">			LOGGER.info(&quot;ADD: To add another Item to the order &quot;);</span>
+<span class="nc" id="L87">			LOGGER.info(&quot;RETURN: TO EXIT &quot;);</span>
+<span class="nc" id="L88">			tnp = getInput().toLowerCase();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">			if (tnp.contentEquals(&quot;return&quot;)) {</span>
+<span class="nc" id="L90">				loopy = true;</span>
+			}
+
+<span class="nc" id="L93">		}</span>
+<span class="nc" id="L94">		LOGGER.info(&quot;Done&quot;);</span>
+<span class="nc" id="L95">		return order;</span>
+
+	}
+
+	String getInput() {
+		// TODO Auto-generated method stub
+<span class="nc" id="L101">		return Utils.getInput();</span>
+	}
+
+	/**
+	 * Updates an existing Order by taking in user input
+	 */
+	@Override
+	public Order update() {
+<span class="nc" id="L109">		LOGGER.info(&quot;CALCULATE - to calculate  an exisiting order&quot;);</span>
+<span class="nc" id="L110">		LOGGER.info(&quot;ADD - to add an ITEM to an exisiting order&quot;);</span>
+<span class="nc" id="L111">		LOGGER.info(&quot;UPDATE - to assign another customer to an exisiting order &quot;);</span>
+
+<span class="nc" id="L113">		String selectoption1 = String.valueOf(getInput().toLowerCase());</span>
+
+<span class="nc bnc" id="L115" title="All 4 branches missed.">		switch (selectoption1) {</span>
+
+		case &quot;add&quot;:
+
+<span class="nc" id="L119">			Order order = new Order();</span>
+<span class="nc" id="L120">			LOGGER.info(&quot;Please enter the Order ID thay you'd like to update&quot;);</span>
+<span class="nc" id="L121">			Long order_id1 = Long.valueOf(getInput());</span>
+
+<span class="nc" id="L123">			LOGGER.info(&quot;Please enter ITEM ID you'd like to add&quot;);</span>
+<span class="nc" id="L124">			Long item_id = Long.valueOf(getInput());</span>
+
+<span class="nc" id="L126">			LOGGER.info(&quot;Please enter the Quantity of the ITEM that you'd like&quot;);</span>
+<span class="nc" id="L127">			Integer quantity = Integer.valueOf(getInput());</span>
+
+<span class="nc" id="L129">			Item item = null;</span>
+<span class="nc" id="L130">			List&lt;Item&gt; items = itemServices.readAll();</span>
+
+<span class="nc bnc" id="L132" title="All 2 branches missed.">			for (Item i : items) {</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">				if (i.getItem_id() == item_id) {</span>
+<span class="nc" id="L134">					item = i;</span>
+<span class="nc" id="L135">					LOGGER.info(&quot;You have added&quot; + &quot; &quot; + quantity + &quot; &quot; + &quot;of the below Item&quot;);</span>
+<span class="nc" id="L136">					System.out.println(i);</span>
+<span class="nc" id="L137">					break;</span>
+				}
+<span class="nc" id="L139">			}</span>
+
+<span class="nc" id="L141">			order.setOrder_id(order_id1);</span>
+<span class="nc" id="L142">			order.getCustomer_id();</span>
+
+<span class="nc" id="L144">			order.setItem_id(item_id);</span>
+<span class="nc" id="L145">			order.setItem(item);</span>
+
+<span class="nc" id="L147">			Double final_price = (Double) (item.getItem_price() * quantity);</span>
+
+<span class="nc" id="L149">			order.setQuantity(quantity);</span>
+<span class="nc" id="L150">			order.setOrderline_price(final_price);</span>
+
+<span class="nc" id="L152">			order = orderServices.additems(order);</span>
+<span class="nc" id="L153">			LOGGER.info(&quot;order has been updated&quot;);</span>
+
+<span class="nc" id="L155">			return order;</span>
+
+		case &quot;update&quot;:
+
+<span class="nc" id="L159">			LOGGER.info(&quot;Please enter the Order ID thay you'd like to update&quot;);</span>
+<span class="nc" id="L160">			Long order_id = Long.valueOf(getInput());</span>
+
+<span class="nc" id="L162">			List&lt;Order&gt; orders = orderServices.readAll();</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">			for (Order i : orders) {</span>
+<span class="nc" id="L164">				Order order1 = null;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">				while (i.getOrder_id() == order_id) {</span>
+<span class="nc" id="L166">					order1 = i;</span>
+<span class="nc" id="L167">					System.out.println(order1);</span>
+					break;
+				}
+<span class="nc" id="L170">			}</span>
+
+<span class="nc" id="L172">			LOGGER.info(&quot;Please enter the new customer ID you'd like to connect to this order&quot;);</span>
+<span class="nc" id="L173">			Long customer_id = Long.valueOf(getInput());</span>
+<span class="nc" id="L174">			Order Order = orderServices.update(new Order(order_id, customer_id));</span>
+<span class="nc" id="L175">			LOGGER.info(&quot;Order Updated&quot;);</span>
+<span class="nc" id="L176">			return Order;</span>
+
+		/**
+		 * Calculating an order
+		 */
+		case &quot;calculate&quot;:
+<span class="nc" id="L182">			List&lt;Order&gt; orders11 = orderServices.readAll();</span>
+<span class="nc" id="L183">			LOGGER.info(&quot;Please enter the id of the Order you would like to delete&quot;);</span>
+<span class="nc" id="L184">			Long Order_id11 = Long.valueOf(getInput());</span>
+<span class="nc" id="L185">			int sum = 0;</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">			for (Order i : orders11) {</span>
+<span class="nc" id="L187">				Order order1 = null;</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">				while (i.getOrder_id() == Order_id11) {</span>
+<span class="nc" id="L189">					order1 = i;</span>
+<span class="nc" id="L190">					System.out.println(i);</span>
+<span class="nc" id="L191">					double cost = order1.getOrderline_price() + sum;</span>
+<span class="nc" id="L192">					System.out.println(cost);</span>
+<span class="nc" id="L193">					break;</span>
+				}
+<span class="nc" id="L195">			}</span>
+
+<span class="nc" id="L197">			orderServices.calculateOrder(Order_id11);</span>
+
+<span class="nc" id="L199">			LOGGER.info(&quot;BELOW IS THE TOTAL PRICE FOR ALL THESE ORDERS&quot;);</span>
+
+<span class="nc" id="L201">			break;</span>
+
+		default:
+<span class="nc" id="L204">			LOGGER.info(&quot;enter valid info&quot;);</span>
+			break;
+		}
+
+<span class="nc" id="L208">		return null;</span>
+
+	}
+
+	/**
+	 * Deletes an existing Order by the id of the Order
+	 */
+	@Override
+	public void delete() {
+
+<span class="nc" id="L218">		LOGGER.info(&quot;Would you like to delete and ITEM from an order or Delete a entier ORDER&quot;);</span>
+<span class="nc" id="L219">		String select = String.valueOf(getInput().toLowerCase());</span>
+
+<span class="nc bnc" id="L221" title="All 3 branches missed.">		switch (select) {</span>
+		case &quot;item&quot;:
+
+<span class="nc" id="L224">			LOGGER.info(&quot;Please enter the id of the Order you would like to delete an item from&quot;);</span>
+<span class="nc" id="L225">			Long Order_id = Long.valueOf(getInput());</span>
+<span class="nc" id="L226">			List&lt;Order&gt; orders = orderServices.readAll();</span>
+
+<span class="nc bnc" id="L228" title="All 2 branches missed.">			for (Order i : orders) {</span>
+<span class="nc" id="L229">				Order order = null;</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">				while (i.getOrder_id() == Order_id) {</span>
+<span class="nc" id="L231">					order = i;</span>
+<span class="nc" id="L232">					System.out.println(i);</span>
+					break;
+				}
+<span class="nc" id="L235">			}</span>
+<span class="nc" id="L236">			LOGGER.info(&quot;SELECT ITEM FROM ORDER BY CHOOSING THE CORRECT ORDERLINE_ID&quot;);</span>
+<span class="nc" id="L237">			Long orderline_id = Long.valueOf(getInput());</span>
+
+<span class="nc" id="L239">			LOGGER.info(&quot;Item has been Deleted&quot;);</span>
+<span class="nc" id="L240">			orderServices.delete(orderline_id);</span>
+
+<span class="nc" id="L242">			break;</span>
+
+		case &quot;order&quot;:
+<span class="nc" id="L245">			List&lt;Order&gt; orders1 = orderServices.readAll();</span>
+<span class="nc" id="L246">			LOGGER.info(&quot;Please enter the id of the Order you would like to delete&quot;);</span>
+<span class="nc" id="L247">			Long Order_id1 = Long.valueOf(getInput());</span>
+
+<span class="nc bnc" id="L249" title="All 2 branches missed.">			for (Order i : orders1) {</span>
+<span class="nc" id="L250">				Order order = null;</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">				while (i.getOrder_id() == Order_id1) {</span>
+<span class="nc" id="L252">					order = i;</span>
+<span class="nc" id="L253">					System.out.println(i);</span>
+					break;
+				}
+<span class="nc" id="L256">			}</span>
+
+<span class="nc" id="L258">			LOGGER.info(&quot;These orders have been Deleted&quot;);</span>
+<span class="nc" id="L259">			orderServices.deleteOrder(Order_id1);</span>
+
+<span class="nc" id="L261">			break;</span>
+
+		default:
+
+			break;
+		}
+
+<span class="nc" id="L268">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
