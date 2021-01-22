@@ -12,7 +12,7 @@ This is an  **Inventory Management System Application** that was build using Jav
 * [Prerequisite](#Prerequisite)
 * [Installing](#Installing)
 * [Testing](#Testing)
-* [Creating JAR file:](#Creating_JAR_file::)
+* [Creating JAR file](#Creating_JAR_file)
 * [Deployment](#Deployment)
 * [Built With](#Built_With)
 * [Versioning](#Versioning)
