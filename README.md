@@ -12,7 +12,7 @@ This is an  **Inventory Management System Application** that was build using Jav
 * [Prerequisite](#Prerequisite)
 * [Installing](#Installing)
 * [Testing](#Testing)
-* [reating a JAR file using Maven:](#Creating_a_JAR file_using_Maven:)
+* [CCreating a JAR file:](#Creating_a_JAR_file::)
 * [Deployment](#Deployment)
 * [Built With](#Built_With)
 * [Versioning](#Versioning)
@@ -71,7 +71,7 @@ All testing of this program was done using unit tests.
 JUnit and Mockito were used to write the tests.
 
 
-#### Creating a JAR file using Maven:
+#### Creating a JAR file:
 
 1. Right Click on the folder of the directory containing the repository
 2. Select Git Bash
