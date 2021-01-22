@@ -105,7 +105,7 @@ public class Ims {
 
 	// UPDATE THIS
 	public void init(String username, String password) {
-		init("jdbc:mysql://127.0.0.1:3306/?user=root", username, password, "src/main/resources/sql-schema.sql");
+		init("jdbc:mysql://35.197.215.20:3306/", username, password, "src/main/resources/sql-schema.sql");
 	}
 
 	public String readFile(String fileLocation) {

@@ -1,6 +1,9 @@
 Coverage: 60%
 
+<details>
+<summary>"Click to expand"</summary>
 ![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2060.PNG)
+</details>
 
 # Inventory Management Aystem Application by Mohamud Mussa
 
@@ -35,55 +38,49 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+1. You will need to clone down the repo, here is a link to the repo [GitHub][https://github.com/MohamudMussa/ims-demo.git]
+* To do this, Git Bash in the desired folder you'd like to clone to.
+* Once Git opens, you will need to initalise git, do this with the following command;
 ```
-Give the example
+Git init
 ```
-
-And repeat
-
+2. After this, write 
 ```
-until finished
+Git clone
+``` and copy and paste the link you wanted to clone, here it is again - [GitHub][https://github.com/MohamudMussa/ims-demo.git]
+
+3. Now its time to open the programme, I used *Eclipse* but you can use anything that allows Java to run. 
+4. *OR EVEN* you'd be able to 
 ```
+GIT BASH 
+```
+into the *ims-demo/target* and then type the following **"java -jar mussa-ims-1.0.1-jar-with-dependencies.jar**
 
-End with an example of getting some data out of the system or using it for a little demo
+5. You can now use the programme via the command line.
 
-## Running the tests
+## Testing
 
 All testing of this program was done using unit tests. 
 JUnit and Mockito were used to write the tests.
 
 
+#### Creating a JAR file using Maven:
 
-### Unit Tests 
-
-Explain what these tests test, why and how to run them
-
+1. Right Click on the folder of the directory containing the repository
+2. Select Git Bash
+3. Write the following
 ```
-Give an example
+mvn clean package
 ```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+4. This will now run all testing, ensuring it all passes, you'll get JAR file in the target folder.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+To deploy this software to a cloud database such as Google Cloud Platform (GCP) you will need to do the following;
+*Open the project
+**In the main folder 'src/main/java' Open > com.qa.ims.utils
+***and then click on DBUtils.java
+****Change the DB_URL from 'localhost' to the desired IP address
 
 ## Built With
 
