@@ -1,9 +1,7 @@
 Coverage: 60%
 
-<details>
-<summary>"Click to expand"</summary>
 ![Coverage](https://github.com/MohamudMussa/ims-demo/blob/dev/documentation/Testing%20Progress%20-%2060.PNG)
-</details>
+
 
 # Inventory Management Aystem Application by Mohamud Mussa
 
@@ -32,10 +30,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 
-```
-Give examples
-```
-
 ### Installing
 
 1. You will need to clone down the repo, here is a link to the repo [GitHub][https://github.com/MohamudMussa/ims-demo.git]
@@ -47,13 +41,16 @@ Git init
 2. After this, write 
 ```
 Git clone
-``` and copy and paste the link you wanted to clone, here it is again - [GitHub][https://github.com/MohamudMussa/ims-demo.git]
+```
+and copy and paste the link you wanted to clone, here it is again - [GitHub][https://github.com/MohamudMussa/ims-demo.git]
 
 3. Now its time to open the programme, I used *Eclipse* but you can use anything that allows Java to run. 
 4. *OR EVEN* you'd be able to 
+
 ```
-GIT BASH 
+GIT BASH 	
 ```
+
 into the *ims-demo/target* and then type the following **"java -jar mussa-ims-1.0.1-jar-with-dependencies.jar**
 
 5. You can now use the programme via the command line.
@@ -69,9 +66,11 @@ JUnit and Mockito were used to write the tests.
 1. Right Click on the folder of the directory containing the repository
 2. Select Git Bash
 3. Write the following
+
 ```
 mvn clean package
 ```
+
 4. This will now run all testing, ensuring it all passes, you'll get JAR file in the target folder.
 
 ## Deployment
