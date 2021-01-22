@@ -40,6 +40,10 @@ public class ItemDaoMysqlTest {
 		}
 	}
 
+	
+	/**
+	 * createTest
+	 */
 	@Test
 	public void createTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(jdbcConnectionUrl, username, password);
@@ -54,6 +58,9 @@ public class ItemDaoMysqlTest {
 		assertEquals(savedItem, item);
 	}
 
+	/**
+	 * readTest
+	 */
 	@Test
 	public void readTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(jdbcConnectionUrl, username, password);
@@ -66,6 +73,10 @@ public class ItemDaoMysqlTest {
 		assertEquals(items, itemDaoMysql.readAll());
 	}
 	
+	
+	/**
+	 * readLatestTest
+	 */
 	@Test
 	public void readLatestTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(jdbcConnectionUrl, username, password);
@@ -80,6 +91,10 @@ public class ItemDaoMysqlTest {
 		assertEquals(ItemMade, itemDaoMysql.readLatest());
 	}
 
+	
+	/**
+	 * updateTest
+	 */
 	@Test
 	public void updateTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(username, password);
@@ -91,7 +106,10 @@ public class ItemDaoMysqlTest {
 		item = itemDaoMysql.update(item);
 		assertNotEquals(savedItem, item);
 	}
-
+	
+	/**
+	 * deleteTest
+	 */
 	@Test
 	public void deleteTest() {
 		ItemDaoMysql itemDaoMysql = new ItemDaoMysql(jdbcConnectionUrl, username, password);

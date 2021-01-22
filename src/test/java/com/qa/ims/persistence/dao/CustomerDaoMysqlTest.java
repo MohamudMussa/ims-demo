@@ -39,7 +39,9 @@ public class CustomerDaoMysqlTest {
 			LOGGER.error(e.getMessage());
 		}
 	}
-
+	/**
+	 * UpdateTest
+	 */
 	@Test
 	public void createTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(jdbcConnectionUrl, username, password);
@@ -53,7 +55,9 @@ public class CustomerDaoMysqlTest {
 		customer = customerDaoMysql.create(customer);
 		assertEquals(savedCustomer, customer);
 	}
-
+	/**
+	 * readTest
+	 */
 	@Test
 	public void readTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(jdbcConnectionUrl, username, password);
@@ -65,7 +69,10 @@ public class CustomerDaoMysqlTest {
 		}
 		assertEquals(customers, customerDaoMysql.readAll());
 	}
-
+	
+	/**
+	 * readLatestTest
+	 */
 	@Test
 	public void readLatestTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(jdbcConnectionUrl, username, password);
@@ -81,7 +88,9 @@ public class CustomerDaoMysqlTest {
 		customerDaoMysql.create(cust_test2);
 		assertEquals(CustomerMade, customerDaoMysql.readLatest());
 	}
-
+	/**
+	 * updateTest
+	 */
 	@Test
 	public void updateTest() {
 		CustomerDaoMysql customerDaoMysql = new CustomerDaoMysql(username, password);
@@ -94,7 +103,9 @@ public class CustomerDaoMysqlTest {
 		customer = customerDaoMysql.update(customer);
 		assertNotEquals(savedCustomer, customer);
 	}
-
+	/**
+	 * deleteTest
+	 */
 	@Test
 	public void deleteTest() {
 
