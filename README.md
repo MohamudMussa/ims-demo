@@ -99,9 +99,9 @@ To deploy this software to a cloud database such as Google Cloud Platform (GCP) 
 
 ## Versioning
 
-Version Control System: Git
-Source Code Management: GitHub
-Database Management System: MySQL Server 5.7 (local or GCP instance)
+*Version Control System: Git
+*Source Code Management: GitHub
+*Database Management System: MySQL Server 5.7 (local or GCP instance)
 
 [Maven Versioning](http://maven.apache.org/download.cgi)  incremental, Minor & Major was used to update the version.
 
